@@ -4,9 +4,11 @@
  */
 package projecto_final;
 
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author minio
+ * @author Eddy Mena
  */
 public class Projecto_final {
 
@@ -15,6 +17,8 @@ public class Projecto_final {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        int randInt = (int)(Math.random()*1000000);
+        JOptionPane.showMessageDialog(null, args, Integer.toString(randInt));
     }
     
 }
