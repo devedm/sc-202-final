@@ -13,12 +13,10 @@ public class Projecto_final {
     /**
      * @param args the command line arguments
      */
-    public GestorQuickPass gestorQuickpass;
+    public static GestorQuickPass gestorQuickpass = new GestorQuickPass();;
     
-    public void Projecto_final(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) {
         gestorQuickpass.createQuickpass("B14", "BRC429");
         gestorQuickpass.getActiveQuickpass();
     }
-    
 }

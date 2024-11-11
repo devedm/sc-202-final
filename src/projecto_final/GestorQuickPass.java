@@ -11,25 +11,27 @@ package projecto_final;
 public class GestorQuickPass {
     
     public Quickpass quickpassEnServicio[];
-    public Object quickpassEliminados[];
+    public Quickpass quickpassEliminados[];
+    public int lastIndex;
 
     public GestorQuickPass() {
         this.quickpassEnServicio = new Quickpass[10];
+        this.quickpassEliminados = new Quickpass[10];
+        this.lastIndex = 0;
     }
     
-    
-    
     public void createQuickpass(String filial, String placa) {
-        int index = this.quickpassEnServicio.length;
-        quickpassEliminados[index] = new Quickpass(filial, placa);
+        this.quickpassEnServicio[this.lastIndex] = new Quickpass();
+        this.quickpassEnServicio[this.lastIndex].setQuickpass(filial, placa);
+        this.lastIndex += 1;
     }
     
     public void getActiveQuickpass(){
-        for (Quickpass quickpass : quickpassEnServicio) {
-            if (quickpass.estado == Quickpass.Estados.ACTIVO) {
-                System.out.println(Integer.toString(quickpass.getCodigo()));
-                System.out.println(quickpass.getFilial());
-                System.out.println(quickpass.getPlaca());
+        for (int i = 0; i < lastIndex; i++) {
+            if (this.quickpassEnServicio[i].estado == Quickpass.Estados.ACTIVO) {
+                System.out.println(Integer.toString(this.quickpassEnServicio[i].getCodigo()));
+                System.out.println(this.quickpassEnServicio[i].getFilial());
+                System.out.println(this.quickpassEnServicio[i].getPlaca());
             }
         }
     }
