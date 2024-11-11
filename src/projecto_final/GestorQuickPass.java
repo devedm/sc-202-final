@@ -61,7 +61,7 @@ public class GestorQuickPass {
     }
     
     public void getPlacaQuickpass(){
-        // pending visualize ONE Placa quickpass
+        // pending visualize ONE Placa quickpass 
     }
     
     
