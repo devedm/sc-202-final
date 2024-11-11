@@ -52,9 +52,18 @@ public class Quickpass {
     public String getPlaca() {
         return placa;
     }
-
+    
     public Estados getEstado() {
         return estado;
+    }
+    
+    public String getEstadoString() {
+        if(estado == Estados.ACTIVO){
+            return "Activo";
+        } else {
+            return "Inactivo";
+        }
+        
     }
     
 }

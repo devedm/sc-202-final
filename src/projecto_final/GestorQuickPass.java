@@ -13,17 +13,23 @@ public class GestorQuickPass {
     public Quickpass quickpassEnServicio[];
     public Quickpass quickpassEliminados[];
     public int lastIndex;
+    GestorAccesso gestorAcceso = null;
+    
 
     public GestorQuickPass() {
         this.quickpassEnServicio = new Quickpass[10];
         this.quickpassEliminados = new Quickpass[10];
         this.lastIndex = 0;
+        this.gestorAcceso = new GestorAccesso();
     }
     
     public void createQuickpass(String filial, String placa) {
         this.quickpassEnServicio[this.lastIndex] = new Quickpass();
         this.quickpassEnServicio[this.lastIndex].setQuickpass(filial, placa);
+        String details = "codigo: " + Integer.toString(this.quickpassEnServicio[this.lastIndex].getCodigo()) + ", filial: " + this.quickpassEnServicio[this.lastIndex].getFilial() + ", placa: " + this.quickpassEnServicio[this.lastIndex].getPlaca() + ", estado: " + this.quickpassEnServicio[this.lastIndex].getEstadoString();
+        this.gestorAcceso.writeFile("Crear_QuickPass" + " | " + details);
         this.lastIndex += 1;
+        
     }
     
     public void deleteQuickPassCodigo(){
@@ -61,9 +67,6 @@ public class GestorQuickPass {
     }
     
     public void getPlacaQuickpass(){
-        // pending visualize ONE Placa quickpass 
+        // pending visualize ONE Placa quickpass
     }
-    
-    
-    
 }
