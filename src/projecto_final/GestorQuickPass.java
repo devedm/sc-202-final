@@ -26,6 +26,14 @@ public class GestorQuickPass {
         this.lastIndex += 1;
     }
     
+    public void deleteQuickPassCodigo(){
+        // delete codigo quickpass pending
+    }
+    
+    public void deleteQuickPassPlaca(){
+        // delete placa quickpass pending
+    }
+    
     public void getActiveQuickpass(){
         for (int i = 0; i < lastIndex; i++) {
             if (this.quickpassEnServicio[i].estado == Quickpass.Estados.ACTIVO) {
@@ -35,4 +43,27 @@ public class GestorQuickPass {
             }
         }
     }
+    
+    public void getAllFilialQuickpass(){
+        // pending visualize ALL filial quickpass
+    }
+    
+    public void getFilialQuickpass(){
+        // pending visualize ONE filial quickpass
+    }
+    
+    public void getCodigoActiveQuickpass(){
+        // pending visualize ONE codigo quickpass
+    }
+    
+    public void getCodigoInactiveQuickpass(){
+        // pending visualize ONE codigo quickpass
+    }
+    
+    public void getPlacaQuickpass(){
+        // pending visualize ONE Placa quickpass
+    }
+    
+    
+    
 }
