@@ -12,28 +12,35 @@ public class GestorQuickPass {
     
     public Quickpass quickpassEnServicio[];
     public Quickpass quickpassEliminados[];
-    public int lastIndex;
+    public int lastActiveIndex;
+    public int lastDeletedIndex;
     GestorAccesso gestorAcceso = null;
     
 
     public GestorQuickPass() {
         this.quickpassEnServicio = new Quickpass[10];
         this.quickpassEliminados = new Quickpass[10];
-        this.lastIndex = 0;
+        this.lastActiveIndex = 0;
         this.gestorAcceso = new GestorAccesso();
     }
     
     public void createQuickpass(String filial, String placa) {
-        this.quickpassEnServicio[this.lastIndex] = new Quickpass();
-        this.quickpassEnServicio[this.lastIndex].setQuickpass(filial, placa);
-        String details = "codigo: " + Integer.toString(this.quickpassEnServicio[this.lastIndex].getCodigo()) + ", filial: " + this.quickpassEnServicio[this.lastIndex].getFilial() + ", placa: " + this.quickpassEnServicio[this.lastIndex].getPlaca() + ", estado: " + this.quickpassEnServicio[this.lastIndex].getEstadoString();
+        this.quickpassEnServicio[this.lastActiveIndex] = new Quickpass();
+        this.quickpassEnServicio[this.lastActiveIndex].setQuickpass(filial, placa);
+        String details = "codigo: " + Integer.toString(this.quickpassEnServicio[this.lastActiveIndex].getCodigo()) + ", filial: " + this.quickpassEnServicio[this.lastActiveIndex].getFilial() + ", placa: " + this.quickpassEnServicio[this.lastActiveIndex].getPlaca() + ", estado: " + this.quickpassEnServicio[this.lastActiveIndex].getEstadoString();
         this.gestorAcceso.writeFile("Crear_QuickPass" + " | " + details);
-        this.lastIndex += 1;
-        
+        this.lastActiveIndex += 1;
     }
     
-    public void deleteQuickPassCodigo(){
+    public void deleteQuickPassCodigo(int codigo){
         // delete codigo quickpass pending
+        for(int i = 0; i < lastActiveIndex; i++) {
+            if(this.quickpassEnServicio[i].getCodigo() == codigo) {
+                this.quickpassEliminados[lastDeletedIndex] = this.quickpassEnServicio[i];
+                System.out.println(this.quickpassEliminados[lastDeletedIndex].toString());
+                this.quickpassEnServicio[i] = null;
+            }
+        }
     }
     
     public void deleteQuickPassPlaca(){
@@ -41,7 +48,7 @@ public class GestorQuickPass {
     }
     
     public void getActiveQuickpass(){
-        for (int i = 0; i < lastIndex; i++) {
+        for (int i = 0; i < lastActiveIndex; i++) {
             if (this.quickpassEnServicio[i].estado == Quickpass.Estados.ACTIVO) {
                 System.out.println(Integer.toString(this.quickpassEnServicio[i].getCodigo()));
                 System.out.println(this.quickpassEnServicio[i].getFilial());
