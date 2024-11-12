@@ -9,53 +9,83 @@ package projecto_final;
  * @author minio
  */
 public class GestorQuickPass {
+    /**
+     * This class will manage the creation, deletion, query and storage of Quickpass objects
+     */
     
     public Quickpass quickpassEnServicio[];
     public Quickpass quickpassEliminados[];
-    public int lastActiveIndex;
-    public int lastDeletedIndex;
     GestorAccesso gestorAcceso = null;
+    public int arrayLengh;
     
 
     public GestorQuickPass() {
-        this.quickpassEnServicio = new Quickpass[10];
-        this.quickpassEliminados = new Quickpass[10];
-        this.lastActiveIndex = 0;
+        this.arrayLengh = 10;
+        this.quickpassEnServicio = new Quickpass[arrayLengh];
+        this.quickpassEliminados = new Quickpass[arrayLengh];
         this.gestorAcceso = new GestorAccesso();
     }
     
-    public void createQuickpass(String filial, String placa) {
-        this.quickpassEnServicio[this.lastActiveIndex] = new Quickpass();
-        this.quickpassEnServicio[this.lastActiveIndex].setQuickpass(filial, placa);
-        String details = "codigo: " + Integer.toString(this.quickpassEnServicio[this.lastActiveIndex].getCodigo()) + ", filial: " + this.quickpassEnServicio[this.lastActiveIndex].getFilial() + ", placa: " + this.quickpassEnServicio[this.lastActiveIndex].getPlaca() + ", estado: " + this.quickpassEnServicio[this.lastActiveIndex].getEstadoString();
-        this.gestorAcceso.writeFile("Crear_QuickPass" + " | " + details);
-        this.lastActiveIndex += 1;
+    // Methods 
+    public int nullIndexFinder( Quickpass aquickpass[], boolean isNull ){
+        int index = -1;
+        for (int i = 0; i < aquickpass.length ; i++) {
+            if (isNull) {
+                if(aquickpass[i] == null){
+                    index = i;
+                }
+            } else {
+                if(aquickpass[i] != null){
+                    index = i;
+                }
+            }
+        }
+        return (index != -1) ? index:null;
     }
     
+    // ----- SETTERS -----
+    // Create Quickpass
+    public void createQuickpass(int codigo, String filial, String placa) {
+        int availableIndex = nullIndexFinder(quickpassEnServicio,true);
+        this.quickpassEnServicio[availableIndex] = new Quickpass();
+        this.quickpassEnServicio[availableIndex].setQuickpass(codigo,filial, placa);
+        String details = this.quickpassEnServicio[availableIndex].getStringQuickpass(true);
+        this.gestorAcceso.writeFile("Crear_QuickPass" + " | " + details);
+    }
+    
+    // Delete by codigo Quickpass
     public void deleteQuickPassCodigo(int codigo){
-        // delete codigo quickpass pending
-        for(int i = 0; i < lastActiveIndex; i++) {
-            if(this.quickpassEnServicio[i].getCodigo() == codigo) {
-                this.quickpassEliminados[lastDeletedIndex] = this.quickpassEnServicio[i];
-                System.out.println(this.quickpassEliminados[lastDeletedIndex].toString());
+        int availableIndex = nullIndexFinder(quickpassEliminados,true);
+        for(int i = 0; i < quickpassEnServicio.length; i++) {
+            if(this.quickpassEnServicio[i] != null && this.quickpassEnServicio[i].getCodigo() == codigo) {
+                this.quickpassEliminados[availableIndex] = this.quickpassEnServicio[i];
+                System.out.println(this.quickpassEliminados[availableIndex].toString());
                 this.quickpassEnServicio[i] = null;
             }
         }
     }
     
-    public void deleteQuickPassPlaca(){
-        // delete placa quickpass pending
-    }
-    
-    public void getActiveQuickpass(){
-        for (int i = 0; i < lastActiveIndex; i++) {
-            if (this.quickpassEnServicio[i].estado == Quickpass.Estados.ACTIVO) {
-                System.out.println(Integer.toString(this.quickpassEnServicio[i].getCodigo()));
-                System.out.println(this.quickpassEnServicio[i].getFilial());
-                System.out.println(this.quickpassEnServicio[i].getPlaca());
+    // Delete by placa Quickpass
+    public void deleteQuickPassPlaca(String placa){
+        int availableIndex = nullIndexFinder(quickpassEliminados,true);
+        for(int i = 0; i < quickpassEnServicio.length; i++) {
+            if(this.quickpassEnServicio[i] != null && this.quickpassEnServicio[i].getPlaca()== placa) {
+                this.quickpassEliminados[availableIndex] = this.quickpassEnServicio[i];
+                System.out.println(this.quickpassEliminados[availableIndex].toString());
+                this.quickpassEnServicio[i] = null;
             }
         }
     }
+    // ----- GETTERS -----
+    // Get Active quickpass from quickpassEnServicio array
+    public void getActiveQuickpass(){
+        for (int i = 0; i < quickpassEnServicio.length; i++) {
+            if (this.quickpassEnServicio[i] != null && this.quickpassEnServicio[i].estado == Quickpass.Estados.ACTIVO) {
+                System.out.println(this.quickpassEnServicio[i].getStringQuickpass(false));
+            }
+        }
+    }
+    
     
     public void getAllFilialQuickpass(){
         // pending visualize ALL filial quickpass

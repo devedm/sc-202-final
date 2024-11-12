@@ -1,1 +1,11 @@
 11/11/2024_20:33:52 | Crear_QuickPass | codigo: 1010056574, filial: B14, placa: BRC429, estado: Activo
+12/11/2024_12:46:05 | Crear_QuickPass | codigo: 1010171965, filial: B14, placa: BRC429, estado: Activo
+12/11/2024_12:48:23 | Crear_QuickPass | codigo: 1010840942, filial: B14, placa: BRC429, estado: Activo
+12/11/2024_13:44:50 | Crear_QuickPass | codigo: 1012548961, filial: B14, placa: BRC429, estado: Activo
+12/11/2024_13:49:29 | Crear_QuickPass | codigo: 1012548961, filial: B14, placa: BRC429, estado: Activo
+12/11/2024_13:58:13 | Crear_QuickPass | Quickpass Codigo: 1012548961 Filial: B14 Placa: BRC429 Estado: Activo
+12/11/2024_14:00:17 | Crear_QuickPass | Quickpass Codigo: 1012548961 Filial: B14 Placa: BRC429 Estado: Activo
+12/11/2024_14:07:04 | Crear_QuickPass | Quickpass Codigo: 1012548961 Filial: B14 Placa: BRC429 Estado: Activo
+12/11/2024_14:08:13 | Crear_QuickPass | Quickpass Codigo: 1012548961 Filial: B14 Placa: BRC429 Estado: Activo
+12/11/2024_14:08:44 | Crear_QuickPass | Quickpass Codigo: 1012548961 Filial: B14 Placa: BRC429 Estado: Activo
+12/11/2024_14:12:54 | Crear_QuickPass | Quickpass Codigo: 1012548961 Filial: B14 Placa: BRC429 Estado: Activo

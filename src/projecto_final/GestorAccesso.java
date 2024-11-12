@@ -15,8 +15,13 @@ import java.util.TimeZone;
 /**
  *
  * @author minio
+ * 
  */
 public class GestorAccesso {
+    /**
+     * This class will include the access task and file storage methods
+     */
+    
     // Attributes
     String path = "Archivo.txt";
     File archivo = new File(path);
@@ -57,7 +62,6 @@ public class GestorAccesso {
             FileWriter fw = new FileWriter(this.path, true);
             fw.append(getTimeStamp() + " | " + data + "\n");
             fw.close();
-            System.out.println("Wrote some text check it out");
         } catch (IOException e) {
             System.out.println("Error occured");
             e.printStackTrace();

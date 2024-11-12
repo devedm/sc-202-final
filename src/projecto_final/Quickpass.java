@@ -9,21 +9,36 @@ package projecto_final;
  * @author Eddy Mena
  */
 public class Quickpass {
+    /**
+     * This class will define the Quickpass parameters and methods
+     */
+    
     // Attributes
     public String filial;
     public int codigo;
-    public String placa  ;
+    public String placa;
     public enum Estados {ACTIVO, INACTIVO};
     public Estados estado;
     
     // Constructor
     public Quickpass() {
-        this.codigo = (int) (Math.random() * 1000000) + 1010000000;
         this.estado = Estados.ACTIVO;      
     }
     
     // Methods
-    // set codigo y validar que cumpla
+
+    public boolean setCodigo(int nCodigo) {
+        String sCodigo = Integer.toString(nCodigo);
+        int sLen = sCodigo.length();
+        String desiredPref = "101";
+        if(sLen == 10 && sCodigo.startsWith(desiredPref)){
+            this.codigo = nCodigo;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     
     public void setFilial(String filial) {
         this.filial = filial;
@@ -37,9 +52,16 @@ public class Quickpass {
         this.estado = estado;
     }
     
-    public void setQuickpass(String filial, String placa) {
-        setFilial(filial);
-        setPlaca(placa);
+    public boolean setQuickpass(int codigo, String filial, String placa) {
+        if(setCodigo(codigo)){
+            setCodigo(codigo);
+            setFilial(filial);
+            setPlaca(placa);
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
     public String getFilial() {
@@ -65,6 +87,17 @@ public class Quickpass {
             return "Inactivo";
         }
         
+    }
+    
+    public String getStringQuickpass(boolean oneLine) {
+        String result;
+        if(oneLine){
+            result = "Quickpass Codigo: " + String.valueOf(getCodigo()) + " Filial: " + getFilial() + " Placa: " + getPlaca() + " Estado: " + getEstadoString();
+        } else {
+            result = "Quickpass\nCodigo: " + String.valueOf(getCodigo()) + "\nFilial: " + getFilial() + "\nPlaca: " + getPlaca() + "\nEstado: " + getEstadoString();
+        }
+        
+        return result;
     }
     
 }
