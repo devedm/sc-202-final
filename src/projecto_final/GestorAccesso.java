@@ -18,7 +18,7 @@ import java.util.TimeZone;
  */
 public class GestorAccesso {
     // Attributes
-    String path = "C:\\Users\\minio\\Archivo.txt";
+    String path = "Archivo.txt";
     File archivo = new File(path);
     Date currentDate = new Date();
     DateFormat dateF = new SimpleDateFormat("dd/MM/yyyy_HH:mm:ss");

@@ -23,7 +23,7 @@ public class Projecto_final {
     public static void main(String[] args) {
         gestorQuickpass.createQuickpass("B14", "BRC429");
         gestorQuickpass.getActiveQuickpass();
-        code = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el codigo a borrar"));
-        gestorQuickpass.deleteQuickPassCodigo(code);
+        //code = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el codigo a borrar"));
+        //gestorQuickpass.deleteQuickPassCodigo(code);
     }
 }

@@ -23,7 +23,8 @@ public class Quickpass {
     }
     
     // Methods
-
+    // set codigo y validar que cumpla
+    
     public void setFilial(String filial) {
         this.filial = filial;
     }
