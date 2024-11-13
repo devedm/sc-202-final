@@ -4,11 +4,13 @@
  */
 package projecto_final;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Eddy Mena
  */
-public class Quickpass {
+public class Quickpass implements Serializable{
     /**
      * This class will define the Quickpass parameters and methods
      */
@@ -26,19 +28,26 @@ public class Quickpass {
     }
     
     // Methods
-
-    public boolean setCodigo(int nCodigo) {
-        String sCodigo = Integer.toString(nCodigo);
+    public boolean codigoValidator(int codigo){
+        boolean isValid = false;
+        String sCodigo = Integer.toString(codigo);
         int sLen = sCodigo.length();
         String desiredPref = "101";
-        if(sLen == 10 && sCodigo.startsWith(desiredPref)){
-            this.codigo = nCodigo;
+        if (sLen == 10 && sCodigo.startsWith(desiredPref)){
+            isValid = true;
+        }
+        return isValid;
+    }
+    
+    public boolean setCodigo(int codigo) {
+        boolean codigoValidator = codigoValidator(codigo);
+        if(codigoValidator){
+            this.codigo = codigo;
             return true;
         } else {
             return false;
         }
     }
-    
     
     public void setFilial(String filial) {
         this.filial = filial;
@@ -50,6 +59,13 @@ public class Quickpass {
 
     public void setEstado(Estados estado) {
         this.estado = estado;
+    }
+    public void changeEstado(){
+        if(getEstado() == Estados.ACTIVO){
+            setEstado(Estados.INACTIVO);
+        } else {
+            setEstado(Estados.ACTIVO);
+        }
     }
     
     public boolean setQuickpass(int codigo, String filial, String placa) {
@@ -86,15 +102,14 @@ public class Quickpass {
         } else {
             return "Inactivo";
         }
-        
     }
     
     public String getStringQuickpass(boolean oneLine) {
         String result;
         if(oneLine){
-            result = "Quickpass Codigo: " + String.valueOf(getCodigo()) + " Filial: " + getFilial() + " Placa: " + getPlaca() + " Estado: " + getEstadoString();
+            result = "Codigo: " + String.valueOf(getCodigo()) + " Filial: " + getFilial() + " Placa: " + getPlaca() + " Estado: " + getEstadoString();
         } else {
-            result = "Quickpass\nCodigo: " + String.valueOf(getCodigo()) + "\nFilial: " + getFilial() + "\nPlaca: " + getPlaca() + "\nEstado: " + getEstadoString();
+            result = "Codigo: " + String.valueOf(getCodigo()) + "\nFilial: " + getFilial() + "\nPlaca: " + getPlaca() + "\nEstado: " + getEstadoString() + "\n";
         }
         
         return result;

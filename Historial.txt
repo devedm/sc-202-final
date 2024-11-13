@@ -1,0 +1,19 @@
+        Date        |  Action  | Details 
+12/11/2024_19:33:13 | Crear_QuickPass | Codigo: 1012222222 Filial: F15 Placa: ASD123 Estado: Activo
+12/11/2024_19:46:42 | Crear_QuickPass | Codigo: 1012456589 Filial: f12 Placa: brc429 Estado: Activo
+12/11/2024_19:50:13 | Crear_QuickPass | Codigo: 1012365487 Filial: f12 Placa: brc429 Estado: Activo
+12/11/2024_19:57:37 | Crear_QuickPass | Codigo: 1012223546 Filial: f12 Placa: brc429 Estado: Activo
+12/11/2024_19:59:16 | Crear_QuickPass | Codigo: 1012222222 Filial: f19 Placa: brc429 Estado: Activo
+12/11/2024_20:07:06 | Crear_QuickPass | Codigo: 1015555555 Filial: f15 Placa: brc429 Estado: Activo
+12/11/2024_20:11:12 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
+12/11/2024_20:22:55 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
+12/11/2024_20:24:19 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
+12/11/2024_20:27:15 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
+12/11/2024_20:28:10 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
+12/11/2024_20:28:10 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
+12/11/2024_20:30:58 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
+12/11/2024_20:33:29 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
+12/11/2024_20:34:31 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
+12/11/2024_20:35:33 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
+12/11/2024_20:56:37 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
+12/11/2024_20:58:58 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo

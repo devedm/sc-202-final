@@ -23,8 +23,8 @@ public class GestorAccesso {
      */
     
     // Attributes
-    String path = "Archivo.txt";
-    File archivo = new File(path);
+    String txtPath = "Historial.txt";
+    File archivo = new File(txtPath);
     Date currentDate = new Date();
     DateFormat dateF = new SimpleDateFormat("dd/MM/yyyy_HH:mm:ss");
     
@@ -38,11 +38,11 @@ public class GestorAccesso {
         try{
             if(archivo.createNewFile()){
                 System.out.println("File created: " + archivo.getName());
-                FileWriter fw = new FileWriter(path);
+                FileWriter fw = new FileWriter(txtPath);
                 fw.write("        Date        |  Action  | Details \n");
                 fw.close();
             } else {
-                System.out.println("File already exist.");
+                //System.out.println("File already exist.");
             }
         } catch (IOException e) {
             System.out.println("An error occurred");
@@ -59,7 +59,7 @@ public class GestorAccesso {
     
     public void writeFile(String data){
         try {
-            FileWriter fw = new FileWriter(this.path, true);
+            FileWriter fw = new FileWriter(txtPath, true);
             fw.append(getTimeStamp() + " | " + data + "\n");
             fw.close();
         } catch (IOException e) {
