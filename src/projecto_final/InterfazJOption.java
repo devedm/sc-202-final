@@ -13,15 +13,17 @@ import javax.swing.JOptionPane;
 
 public class InterfazJOption {
     
-    public String mainMenuMsj, gestionMenuMsj, invalidMenuOptionMsj,inputCodigoMsj,inputFilialMsj,inputPlacaMsj;
+    public String mainMenuMsj, gestionMenuMsj, accesoMenuMsj, reportesMenuMsj, invalidMenuOptionMsj,inputCodigoMsj,inputFilialMsj,inputPlacaMsj;
     public int optionMain,optionGestion,optionAcceso,optionReportes;
     public GestorQuickPass gestorQuickpass;
 
     public InterfazJOption() {
         this.gestorQuickpass = new GestorQuickPass();
         // text messages
-        this.mainMenuMsj = "********* MENU *********\n1) Gestión Quickpass\n2) Reportes\n0) Salir";
-        this.gestionMenuMsj = "Gestión Quickpass\n1) Registrar Quickpass\n2) Consultar Quickpass\n3) Eliminar Quickpass\n4) Desactivar o activar Quickpass\n0) Volver al menu principal";
+        this.mainMenuMsj = " ******** MENU ******** \n1) Gestión Quickpass.\n2) Acceso Quickpass.\n3) Reportes.\n0) Salir.";
+        this.gestionMenuMsj = " *** Gestión Quickpass *** \n1) Registrar Quickpass.\n2) Consultar Quickpass.\n3) Eliminar Quickpass.\n4) Desactivar o activar Quickpass\n0) Volver al menu principal";
+        this.accesoMenuMsj = " *** Accesos Quickpass *** \n1) Consultar por filial.\n2) Consultar por fechas.\n3) Consultar por placa.\n4) Consultar por Código\n0) Volver al menu principal";
+        this.reportesMenuMsj = " *** Reportes Quickpass *** \n1) Reporte de todos los accesos.\n2) Reporte accesos por filial\n3) Reporte quickpass registrados.\n4) Reporte quickpass activos e inactivos.\n5) Reporte quickpass eliminados.\n0) Volver al menu principal";
         this.inputCodigoMsj = "Ingrese un Codigo: Numero de 10 digitos que tiene que iniciar con 101, por ejemplo 1018275625";
         this.inputFilialMsj = "Ingrese un Filial: El numero de apartamento del inquilino dueño del Quickpass";
         this.inputPlacaMsj = "Ingrese un Placa: El numero de placa del vehiculo";
@@ -30,6 +32,8 @@ public class InterfazJOption {
         // option integers
         this.optionMain = -1;
         this.optionGestion = -1;
+        this.optionAcceso = -1;
+        this.optionReportes = -1;
     }
     public void mainMenu(){
         do {   
@@ -40,7 +44,8 @@ public class InterfazJOption {
             }
             switch (optionMain) {
                 case 1 -> gestionMenu();
-                case 2 -> reportesMenu();
+                case 2 -> accesoMenu();
+                case 3 -> reportesMenu();
                 case 0 -> JOptionPane.showMessageDialog(null, "Saliendo");
                 default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -234,25 +239,51 @@ public class InterfazJOption {
 
     public void accesoMenu(){
         /*
+            Metodo que gestiona la interfaz de opciones para el modulo 2 de 
+        gestion de accesso, el cual va mostrar 4 opciones para mostrar el 
         
+        1) Consultar por filial
+        2) Consultar por fechas
+        3) Consultar por placa
+        4) Consultar por Código
+        0) Volver al menu principal
+       
+        Parameter: none
+        Return: void
         */
         do {
             try{
-                optionGestion = Integer.parseInt(JOptionPane.showInputDialog(null, gestionMenuMsj));
+                optionAcceso = Integer.parseInt(JOptionPane.showInputDialog(null, accesoMenuMsj));
             } catch (NumberFormatException e) {
                 System.out.println("Error:" + e);
             }
-            switch (optionGestion) {
-                case 1 -> createQuickpass();
-                case 2 -> queryQuickpass();
-                case 3 -> deleteQuickpass();
-                case 4 -> changeEstadoQuickpass();
+            switch (optionAcceso) {
+                case 1 -> accesoPorFilial();
+                case 2 -> accesoPorFechas();
+                case 3 -> accesoPorPlaca();
+                case 4 -> accesoPorCodigo();
                 case 0 -> JOptionPane.showMessageDialog(null, "Volviendo al menu anterior");
                 default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            } while (optionGestion != 0);
+            } while (optionAcceso != 0);
+    }
+    
+    public void accesoPorFilial(){
+        JOptionPane.showMessageDialog(null, "Resultados");
+    }
+    
+    public void accesoPorFechas(){
+        JOptionPane.showMessageDialog(null, "Resultados");
+    }
+    
+    public void accesoPorPlaca(){
+        JOptionPane.showMessageDialog(null, "Resultados");
     }
 
+    public void accesoPorCodigo(){
+        JOptionPane.showMessageDialog(null, "Resultados");
+    }
+    
     public void reportesMenu(){
         do {
             try{
