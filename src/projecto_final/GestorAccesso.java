@@ -84,7 +84,7 @@ public class GestorAccesso {
         
             - Parameter -> String data: un string que tenga un formato de accion
         realizada luego agregue un separador "|" y mas detalles por ejemplo, 
-        "ingreso:aceptado | quickpass:codigo,filial:b15,placa:bsd-546"
+        "Aceptado | Ingreso | codigo:1011234567,filial:b15,placa:bsd-546"
             - Return -> void
         */
         try {
