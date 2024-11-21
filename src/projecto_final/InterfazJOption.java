@@ -16,12 +16,13 @@ public class InterfazJOption {
     public String mainMenuMsj, gestionMenuMsj, accesoMenuMsj, reportesMenuMsj, invalidMenuOptionMsj,inputCodigoMsj,inputFilialMsj,inputPlacaMsj;
     public int optionMain,optionGestion,optionAcceso,optionReportes;
     public GestorQuickPass gestorQuickpass;
+    public String noExisteQP;
 
     public InterfazJOption() {
         this.gestorQuickpass = new GestorQuickPass();
         // text messages
         this.mainMenuMsj = " ******** MENU ******** \n1) Gestión Quickpass.\n2) Acceso Quickpass.\n3) Reportes.\n0) Salir.";
-        this.gestionMenuMsj = " *** Gestión Quickpass *** \n1) Registrar Quickpass.\n2) Consultar Quickpass.\n3) Eliminar Quickpass.\n4) Desactivar o activar Quickpass\n0) Volver al menu principal";
+        this.gestionMenuMsj = " *** Gestión Quickpass *** \n1) Registrar Quickpass.\n2) Consultar Quickpass.\n3) Eliminar Quickpass.\n4) Desactivar o activar Quickpass.\n5) Entrar con quickpass.\n6) Salir con quickpass.\n0) Volver al menu principal";
         this.accesoMenuMsj = " *** Accesos Quickpass *** \n1) Consultar por filial.\n2) Consultar por fechas.\n3) Consultar por placa.\n4) Consultar por Código\n0) Volver al menu principal";
         this.reportesMenuMsj = " *** Reportes Quickpass *** \n1) Reporte de todos los accesos.\n2) Reporte accesos por filial\n3) Reporte quickpass registrados.\n4) Reporte quickpass activos e inactivos.\n5) Reporte quickpass eliminados.\n0) Volver al menu principal";
         this.inputCodigoMsj = "Ingrese un Codigo: Numero de 10 digitos que tiene que iniciar con 101, por ejemplo 1018275625";
@@ -34,6 +35,9 @@ public class InterfazJOption {
         this.optionGestion = -1;
         this.optionAcceso = -1;
         this.optionReportes = -1;
+        
+        // Errores
+        this.noExisteQP = "No hay ningun Quickpass creado";
     }
     public void mainMenu(){
         do {   
@@ -63,6 +67,8 @@ public class InterfazJOption {
                 case 2 -> queryQuickpass();
                 case 3 -> deleteQuickpass();
                 case 4 -> changeEstadoQuickpass();
+                case 5 -> inQuickpass();
+                case 6 -> outQuickpass();
                 case 0 -> JOptionPane.showMessageDialog(null, "Volviendo al menu anterior");
                 default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -233,7 +239,41 @@ public class InterfazJOption {
                 default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "No hay ningun Quickpass creado");
+            JOptionPane.showMessageDialog(null, noExisteQP);
+        }
+    }
+    
+    public void inQuickpass(){
+        int nCodigo;
+        nCodigo = Integer.parseInt(JOptionPane.showInputDialog(null,inputCodigoMsj));
+        String permiso = gestorQuickpass.useQuickpass(nCodigo, true);
+        if(permiso == null){
+            JOptionPane.showMessageDialog(null, noExisteQP);
+        } else {
+            if(permiso.contentEquals("Aceptado")){
+                // Aceptado
+                JOptionPane.showMessageDialog(null, "Entrada aceptada para quickpass codigo: " + nCodigo);
+            } else {
+                // Rechazado
+                JOptionPane.showMessageDialog(null, "Entrada aceptada para quickpass codigo: " + nCodigo);
+            }
+        }
+    }
+    
+    public void outQuickpass(){
+        int nCodigo;
+        nCodigo = Integer.parseInt(JOptionPane.showInputDialog(null,inputCodigoMsj));
+        String permiso = gestorQuickpass.useQuickpass(nCodigo, true);
+        if(permiso == null){
+            JOptionPane.showMessageDialog(null, noExisteQP);
+        } else {
+            if(permiso.contentEquals("Aceptado")){
+                // Aceptado
+                JOptionPane.showMessageDialog(null, "Salida aceptada para quickpass codigo: " + nCodigo);
+            } else {
+                // Rechazado
+                JOptionPane.showMessageDialog(null, "Salida aceptada para quickpass codigo: " + nCodigo);
+            }
         }
     }
 

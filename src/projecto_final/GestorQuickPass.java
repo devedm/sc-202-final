@@ -41,7 +41,8 @@ public class GestorQuickPass {
         de la lista.
 
         - Return -> int: retorna un numero de indice donde se encuentra o el 
-        primer valor null o no null de la lista seleccionada.
+        primer valor null o no null de la lista seleccionada, si no encuentra 
+        el valor indicado retorna -1.
     */
         int index = -1;
         for (int i = 0; i < aquickpass.length ; i++) {
@@ -83,10 +84,10 @@ public class GestorQuickPass {
         if(availableIndex != -1) {
             this.quickpassEnServicio[availableIndex] = new Quickpass();
             this.quickpassEnServicio[availableIndex].setQuickpass(codigo,filial, placa);
-            String details = this.quickpassEnServicio[availableIndex].getStringQuickpass(true);
-            this.gestorAcceso.writeFile("Crear_QuickPass" + " | " + details);
+            this.gestorAcceso.writeFile("Crear_QuickPass" + " | " + "Completado" + " | " + this.quickpassEnServicio[availableIndex].getStringQuickpass(true));
             isSuccessfull = true;
         } else {
+            this.gestorAcceso.writeFile("Crear_QuickPass" + " | " + "Error" + " | " + "no se pudo crear quickpass codigo:" + String.valueOf(codigo) + ",filial:" + filial + ",placa:" + placa);
             isSuccessfull = false;
         }
         return isSuccessfull;
@@ -162,6 +163,47 @@ public class GestorQuickPass {
     // ----- GETTERS -----
     
     
+    public String useQuickpass(int codigo, boolean direction){
+        /*
+            Este metodo revisa si al usar un quickpass es valido para la entrada
+        o la salida, ademas de que registra la actividad con el modulo de acceso.
+            
+            - Parameter -> int codigo: codigo para usar quickpass.
+            - Return -> String: el resultado va ser null si no existen quickpass
+        para revisar, si existe y esta activo se retorna Aceptado y si no cumple
+        alguna de las anteriores retorna Rechazado.
+        */
+        String sResult = null;
+        if(nullIndexFinder(quickpassEnServicio, false) != -1){
+            // si el return es de != -1 singifica que hay al menos 1 quickpass registrado
+            if(direction){
+                // si la direccion es *true* significa que esta entrando
+                int index = getIndexByCodigoQuickpass(codigo,quickpassEnServicio);
+                if(index != -1 && quickpassEnServicio[index].getEstado() == Quickpass.Estados.ACTIVO){
+                    // si encontramos el codigo ingresado && si esta activo
+                    sResult = "Aceptado";
+                    gestorAcceso.writeFile(sResult + " | Entrada | Quickpass: " + quickpassEnServicio[index].getStringQuickpass(true));
+                } else {
+                    sResult = "Rechazado";
+                    gestorAcceso.writeFile(sResult + " | Entrada | Quickpass: " + quickpassEnServicio[index].getStringQuickpass(true));
+                }
+            } else {
+                // si la direccion es *false* significa que esta saliendo
+                int index = getIndexByCodigoQuickpass(codigo,quickpassEnServicio);
+                if(index != -1 && quickpassEnServicio[index].getEstado() == Quickpass.Estados.ACTIVO){
+                    // si encontramos el codigo ingresado && si esta activo
+                    sResult = "Aceptado";
+                    gestorAcceso.writeFile(sResult + " | Salida | Quickpass: " + quickpassEnServicio[index].getStringQuickpass(true));
+                } else {
+                    sResult = "Rechazado";
+                    gestorAcceso.writeFile(sResult + " | Salida | Quickpass: " + quickpassEnServicio[index].getStringQuickpass(true));
+                }
+            }
+        }
+        return sResult;
+    }
+    
+    
     public String getExistingQuickpass(){
         /*
         Esta funcion revisa la lista [quickpassEnServicio] para encontrar objetos
@@ -171,7 +213,7 @@ public class GestorQuickPass {
         - Parameter -> none
         - Return -> String
         */
-        String sResult = null;
+        String sResult = " ";
         for (Quickpass qp : this.quickpassEnServicio) {
             if (qp != null) {
                 String qpString = qp.getStringQuickpass(false);

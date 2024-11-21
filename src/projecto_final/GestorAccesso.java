@@ -48,7 +48,7 @@ public class GestorAccesso {
             if(archivo.createNewFile()){
                 System.out.println("File created: " + archivo.getName());
                 FileWriter fw = new FileWriter(txtPath);
-                fw.write("        Date        |  Action  | Details \n");
+                fw.write("        Fecha        |  Accion  |  Detalles  |  Quickpass  \n");
                 fw.close();
             } else {
                 //System.out.println("File already exist.");
