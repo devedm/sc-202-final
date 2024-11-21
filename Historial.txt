@@ -17,3 +17,5 @@
 12/11/2024_20:35:33 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
 12/11/2024_20:56:37 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
 12/11/2024_20:58:58 | Crear_QuickPass | Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo
+20/11/2024_17:47:46 | Crear_QuickPass | Codigo: 1011234567 Filial: 1 Placa: 1 Estado: Activo
+20/11/2024_17:50:19 | Crear_QuickPass | Codigo: 1011234567 Filial: 1 Placa: 1 Estado: Activo

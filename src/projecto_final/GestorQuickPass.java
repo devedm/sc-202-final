@@ -28,11 +28,17 @@ public class GestorQuickPass {
     
     // Methods 
     public int nullIndexFinder( Quickpass aquickpass[], boolean isNull ){
-        /*
-        This method will loop an array with Quickpass objects to find null values,
-        or the other way not null values depending on the isNull boolean value.
-        */
-        
+    /*
+        Esta funcion recibe 2 parametros, uno de lista de objetos quickpass y 
+        el otro un booleano que decide el resultado, va a realizar una busqueda 
+        en la lista quickpass seleccionada y retornar si tiene o no valores null.
+
+        Parameter -> 
+            Quickpass Array[] aquickpass: recibe alguna de las 2 lista de objetos
+        [quickpassEnServicio] o [quickpassEliminados]
+
+        Return -> 
+    */
         int index = -1;
         for (int i = 0; i < aquickpass.length ; i++) {
             if (isNull) {
@@ -53,6 +59,19 @@ public class GestorQuickPass {
     // ----- CREATE -----
     // Create Quickpass
     public boolean createQuickpass(int codigo, String filial, String placa) {
+    /*
+        Esta funcion acepta 3 parametros para generar un objeto {Quickpass} nuevo dentro de la lista [quickpassEnServicio] este nuevo objeto se 
+
+        Parameter -> 
+            Int codigo: debe ser un valor Int con 10 digitos, ademas los 3 
+        primeros dijitos deben ser 101, por ejemplo 1011234567
+            String filial: debe ser el numero de apartamento del dueño del 
+        quickpass, debe ser un string y no tiene requisitos adicionales.
+            String placa: debe ser el numero de placa del auto al que se le va 
+        asignar el quickpass debe ser un String.
+        
+        Return -> Boolean: si se pudo crear el nuevo quickpass el resultado es True y si no es False
+    */
         boolean isSuccessfull = false;
         int availableIndex = nullIndexFinder(quickpassEnServicio,true);
         if(availableIndex != -1) {
@@ -129,9 +148,18 @@ public class GestorQuickPass {
     }
     
     // ----- GETTERS -----
-    // Get all the quickpass from array
+    
+    
     public String getExistingQuickpass(){
-        String sResult = "Existing Quickpass\n";
+        /*
+        Esta funcion revisa la lista [quickpassEnServicio] para encontrar objetos
+        de tipo quickpass y retornar un string con todos los que encuentre que no 
+        sean null.
+
+        Parameter -> none
+        Return -> String
+        */
+        String sResult = null;
         for (Quickpass qp : this.quickpassEnServicio) {
             if (qp != null) {
                 String qpString = qp.getStringQuickpass(false);
@@ -142,8 +170,10 @@ public class GestorQuickPass {
         return sResult;
     }    
     
+    
     public String getActiveQuickpass(){
-        String sResult = "Active Quickpass\n";
+        
+        String sResult = "-> Resultado todos los quickpass activos:\n";
         for (Quickpass qp : this.quickpassEnServicio) {
             if (qp != null && qp.getEstado() == Quickpass.Estados.ACTIVO) {
                 String qpString = qp.getStringQuickpass(false);
@@ -154,12 +184,15 @@ public class GestorQuickPass {
         
     }
     
-    public void getAllFilialQuickpass(){
-        // pending visualize ALL filial quickpass
-    }
-    
-    public void getFilialQuickpass(){
-        // pending visualize ONE filial quickpass
+    public String getFilialQuickpass(String filial){
+        String sResult = "-> Resultados filial: " + filial + "\n";
+        for (Quickpass qp : this.quickpassEnServicio) {
+            if (qp != null && qp.getEstado() == Quickpass.Estados.ACTIVO) {
+                String qpString = qp.getStringQuickpass(false);
+                sResult += "----------\n" + qpString;
+            }
+        }
+        return sResult;
     }
     
     public String getCodigoQuickpass(int codigo){

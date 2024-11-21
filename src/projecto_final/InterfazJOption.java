@@ -85,12 +85,14 @@ public class InterfazJOption {
     } 
     public void queryQuickpass(){
         int opcion = 0;
-        String nPlaca = null;
         int nCodigo = 0;
+        String nPlaca = null;
+        String nFilial = null;
         String result = null;
         
+        
         if(gestorQuickpass.nullIndexFinder(gestorQuickpass.quickpassEnServicio, false) != -1){
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(null,"Elija una option:\n1)Busqueda por Placa\n2)Busqueda por Codigo"));
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null,"Elija una opcion:\n1)Busqueda por Placa\n2)Busqueda por Codigo\n3)Busqueda por Filial\n4)Mostrar todos"));
             switch (opcion) {
                 case 1 -> {
                     try{
@@ -114,6 +116,27 @@ public class InterfazJOption {
                     result = gestorQuickpass.getCodigoQuickpass(nCodigo);
                     if(result!= null){
                         JOptionPane.showMessageDialog(null, result);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se han encontrado resultados");
+                    }
+                }
+                case 3 -> {
+                    try{
+                        nFilial = JOptionPane.showInputDialog(null,inputFilialMsj);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error:" + e);
+                    } 
+                    result = gestorQuickpass.getFilialQuickpass(nFilial);
+                    if(result!= null){
+                        JOptionPane.showMessageDialog(null, result);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se han encontrado resultados");
+                    }
+                }
+                case 4 -> {
+                    result = gestorQuickpass.getExistingQuickpass();
+                    if(result!= null){
+                        JOptionPane.showMessageDialog(null, "-> Resultado todos los quickpass:\n" + result);
                     } else {
                         JOptionPane.showMessageDialog(null, "No se han encontrado resultados");
                     }
