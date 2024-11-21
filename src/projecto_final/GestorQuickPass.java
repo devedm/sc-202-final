@@ -84,10 +84,10 @@ public class GestorQuickPass {
         if(availableIndex != -1) {
             this.quickpassEnServicio[availableIndex] = new Quickpass();
             this.quickpassEnServicio[availableIndex].setQuickpass(codigo,filial, placa);
-            this.gestorAcceso.writeFile("Crear_QuickPass" + " | " + "Completado" + " | " + this.quickpassEnServicio[availableIndex].getStringQuickpass(true));
+            this.gestorAcceso.writeFile("Crear_QuickPass" + " - " + "Completado" + " - " + this.quickpassEnServicio[availableIndex].getStringQuickpass(true));
             isSuccessfull = true;
         } else {
-            this.gestorAcceso.writeFile("Crear_QuickPass" + " | " + "Error" + " | " + "no se pudo crear quickpass codigo:" + String.valueOf(codigo) + ",filial:" + filial + ",placa:" + placa);
+            this.gestorAcceso.writeFile("Crear_QuickPass" + " - " + "Error" + " - " + "no se pudo crear quickpass codigo:" + String.valueOf(codigo) + ",filial:" + filial + ",placa:" + placa);
             isSuccessfull = false;
         }
         return isSuccessfull;
@@ -182,10 +182,10 @@ public class GestorQuickPass {
                 if(index != -1 && quickpassEnServicio[index].getEstado() == Quickpass.Estados.ACTIVO){
                     // si encontramos el codigo ingresado && si esta activo
                     sResult = "Aceptado";
-                    gestorAcceso.writeFile(sResult + " | Entrada | Quickpass: " + quickpassEnServicio[index].getStringQuickpass(true));
+                    gestorAcceso.writeFile(sResult + " - Entrada - Quickpass: " + quickpassEnServicio[index].getStringQuickpass(true));
                 } else {
                     sResult = "Rechazado";
-                    gestorAcceso.writeFile(sResult + " | Entrada | Quickpass: " + quickpassEnServicio[index].getStringQuickpass(true));
+                    gestorAcceso.writeFile(sResult + " - Entrada - Quickpass: " + quickpassEnServicio[index].getStringQuickpass(true));
                 }
             } else {
                 // si la direccion es *false* significa que esta saliendo
@@ -193,10 +193,10 @@ public class GestorQuickPass {
                 if(index != -1 && quickpassEnServicio[index].getEstado() == Quickpass.Estados.ACTIVO){
                     // si encontramos el codigo ingresado && si esta activo
                     sResult = "Aceptado";
-                    gestorAcceso.writeFile(sResult + " | Salida | Quickpass: " + quickpassEnServicio[index].getStringQuickpass(true));
+                    gestorAcceso.writeFile(sResult + " - Salida - Quickpass: " + quickpassEnServicio[index].getStringQuickpass(true));
                 } else {
                     sResult = "Rechazado";
-                    gestorAcceso.writeFile(sResult + " | Salida | Quickpass: " + quickpassEnServicio[index].getStringQuickpass(true));
+                    gestorAcceso.writeFile(sResult + " - Salida - Quickpass: " + quickpassEnServicio[index].getStringQuickpass(true));
                 }
             }
         }
@@ -307,5 +307,16 @@ public class GestorQuickPass {
             isValid = true;
         }
         return isValid;
+    }
+    
+    public void readFileTest(){
+        String[][] narr = gestorAcceso.readFile();
+        for (int i = 0; i < narr.length; i++) {
+                for (int j = 0; j < narr[i].length; j++) {
+                    System.out.print(narr[i][j] + " ");
+                }
+                System.out.print("\n");
+            }
+        
     }
 }

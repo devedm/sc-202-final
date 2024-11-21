@@ -272,7 +272,7 @@ public class InterfazJOption {
                 JOptionPane.showMessageDialog(null, "Salida aceptada para quickpass codigo: " + nCodigo);
             } else {
                 // Rechazado
-                JOptionPane.showMessageDialog(null, "Salida aceptada para quickpass codigo: " + nCodigo);
+                JOptionPane.showMessageDialog(null, "Salida aceptadav v  para quickpass codigo: " + nCodigo);
             }
         }
     }
@@ -310,6 +310,7 @@ public class InterfazJOption {
     
     public void accesoPorFilial(){
         JOptionPane.showMessageDialog(null, "Resultados");
+        gestorQuickpass.readFileTest();
     }
     
     public void accesoPorFechas(){

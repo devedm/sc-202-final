@@ -4,7 +4,9 @@
  */
 package projecto_final;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -48,7 +50,7 @@ public class GestorAccesso {
             if(archivo.createNewFile()){
                 System.out.println("File created: " + archivo.getName());
                 FileWriter fw = new FileWriter(txtPath);
-                fw.write("        Fecha        |  Accion  |  Detalles  |  Quickpass  \n");
+                        fw.write("Fecha - Accion - Detalles - Quickpass - \n");
                 fw.close();
             } else {
                 //System.out.println("File already exist.");
@@ -89,7 +91,7 @@ public class GestorAccesso {
         */
         try {
             FileWriter fw = new FileWriter(txtPath, true);
-            fw.append(getTimeStamp() + " | " + data + "\n");
+            fw.append(getTimeStamp() + " - " + data + " - \n");
             fw.close();
         } catch (IOException e) {
             System.out.println("Error occured");
@@ -97,7 +99,52 @@ public class GestorAccesso {
         }
     }
     
-    public void readFile(){
+    public String[][] readFile(){
+        /*
+            
+        */
+        String line = "";
+        String bigString = "";
+        int row = 0;
+        int col = 4;
+        int index = 0;
+        String[][] log2D = null;
         
+        try{
+            FileReader fileReader = new FileReader(txtPath);
+            BufferedReader br = new BufferedReader(fileReader);
+
+            while ((line = br.readLine()) != null){
+                row ++;
+                bigString += line;
+            }
+            String[] logArray = bigString.split(" - ",-1);
+            System.out.println("bigString " + bigString);
+            System.out.println("row " + row);
+            for (String item : logArray) {
+                System.out.println(item);
+            }
+            log2D = new String[row][col];
+            
+            for (int r = 0; r < log2D.length; r++) {
+                for (int c = 0; c < log2D[r].length; c++) {
+                    log2D[r][c] = logArray[index];
+                    index++;
+                }
+            }
+            
+            for (int i = 0; i < log2D.length; i++) {
+                for (int j = 0; j < log2D[i].length; j++) {
+                    //System.out.print(log2D[i][j] + " ");
+                }
+                //System.out.print("\n");
+            }
+            
+            br.close();
+             
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return log2D;
     }
 }
