@@ -35,6 +35,15 @@ public class GestorAccesso {
 
     // Methods
     public void createFile() {
+        /*
+            Este método se encarga de crear un nuevo archivo de nombre "txtPath"
+        de extension txt en la carpeta base del proyecto el cual almacena el 
+        historial de acceso de los quickpass agregando una hora y descripcion 
+        de la interaccion.
+
+            - Parameter -> none
+            - Return -> void
+        */
         try{
             if(archivo.createNewFile()){
                 System.out.println("File created: " + archivo.getName());
@@ -51,6 +60,14 @@ public class GestorAccesso {
     }
     
     public String getTimeStamp(){
+        /*
+            Este método se encarga de consultar la hora actual en la region 
+        "CST" y genera un string que tiene un formato de (dd/MM/yyyy_HH:mm:ss)
+        definido en la variable "dateF".
+
+            - Parameter -> none
+            - Return -> String: es una hora en formato dd/MM/yyyy_HH:mm:ss //https://www.digitalocean.com/community/tutorials/java-simpledateformat-java-date-format
+        */
         String timestamp;
         dateF.setTimeZone(TimeZone.getTimeZone("CST"));
         timestamp = dateF.format(currentDate.getTime());
@@ -58,6 +75,18 @@ public class GestorAccesso {
     }
     
     public void writeFile(String data){
+        /*
+            Este método escribe en el archivo anteriormente generado, este 
+        agrega automaticamente el string de fecha de getTimeStamp() y luego 
+        mediante un separador | agrega la data que se le pasa como parametro, 
+        se pide que no tenga salto de linea ya que este lo agrega en final para 
+        lograr el formato de log.
+        
+            - Parameter -> String data: un string que tenga un formato de accion
+        realizada luego agregue un separador "|" y mas detalles por ejemplo, 
+        "ingreso:aceptado | quickpass:codigo,filial:b15,placa:bsd-546"
+            - Return -> void
+        */
         try {
             FileWriter fw = new FileWriter(txtPath, true);
             fw.append(getTimeStamp() + " | " + data + "\n");

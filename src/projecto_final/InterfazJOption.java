@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class InterfazJOption {
     
     public String mainMenuMsj, gestionMenuMsj, invalidMenuOptionMsj,inputCodigoMsj,inputFilialMsj,inputPlacaMsj;
-    public int optionMain,optionGestion;
+    public int optionMain,optionGestion,optionAcceso,optionReportes;
     public GestorQuickPass gestorQuickpass;
 
     public InterfazJOption() {
@@ -233,10 +233,41 @@ public class InterfazJOption {
     }
 
     public void accesoMenu(){
-
+        /*
+        
+        */
+        do {
+            try{
+                optionGestion = Integer.parseInt(JOptionPane.showInputDialog(null, gestionMenuMsj));
+            } catch (NumberFormatException e) {
+                System.out.println("Error:" + e);
+            }
+            switch (optionGestion) {
+                case 1 -> createQuickpass();
+                case 2 -> queryQuickpass();
+                case 3 -> deleteQuickpass();
+                case 4 -> changeEstadoQuickpass();
+                case 0 -> JOptionPane.showMessageDialog(null, "Volviendo al menu anterior");
+                default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (optionGestion != 0);
     }
 
     public void reportesMenu(){
-
+        do {
+            try{
+                optionGestion = Integer.parseInt(JOptionPane.showInputDialog(null, gestionMenuMsj));
+            } catch (NumberFormatException e) {
+                System.out.println("Error:" + e);
+            }
+            switch (optionGestion) {
+                case 1 -> createQuickpass();
+                case 2 -> queryQuickpass();
+                case 3 -> deleteQuickpass();
+                case 4 -> changeEstadoQuickpass();
+                case 0 -> JOptionPane.showMessageDialog(null, "Volviendo al menu anterior");
+                default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } while (optionGestion != 0);
     }
 }

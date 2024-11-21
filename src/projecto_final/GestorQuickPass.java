@@ -33,11 +33,15 @@ public class GestorQuickPass {
         el otro un booleano que decide el resultado, va a realizar una busqueda 
         en la lista quickpass seleccionada y retornar si tiene o no valores null.
 
-        Parameter -> 
+        - Parameter -> 
             Quickpass Array[] aquickpass: recibe alguna de las 2 lista de objetos
-        [quickpassEnServicio] o [quickpassEliminados]
+        [quickpassEnServicio] o [quickpassEliminados].
+            boolean isNull: recibe true y retorna el primer valor null de la 
+        lista, y si es false entonces retorna el primer valor que no sea null 
+        de la lista.
 
-        Return -> 
+        - Return -> int: retorna un numero de indice donde se encuentra o el 
+        primer valor null o no null de la lista seleccionada.
     */
         int index = -1;
         for (int i = 0; i < aquickpass.length ; i++) {
@@ -60,9 +64,11 @@ public class GestorQuickPass {
     // Create Quickpass
     public boolean createQuickpass(int codigo, String filial, String placa) {
     /*
-        Esta funcion acepta 3 parametros para generar un objeto {Quickpass} nuevo dentro de la lista [quickpassEnServicio] este nuevo objeto se 
+        Esta funcion acepta 3 parametros para generar un objeto {Quickpass} 
+        nuevo dentro de la lista [quickpassEnServicio] y retorna true o false 
+        si fue posible crear el objeto o no.
 
-        Parameter -> 
+        - Parameter -> 
             Int codigo: debe ser un valor Int con 10 digitos, ademas los 3 
         primeros dijitos deben ser 101, por ejemplo 1011234567
             String filial: debe ser el numero de apartamento del dueño del 
@@ -70,7 +76,7 @@ public class GestorQuickPass {
             String placa: debe ser el numero de placa del auto al que se le va 
         asignar el quickpass debe ser un String.
         
-        Return -> Boolean: si se pudo crear el nuevo quickpass el resultado es True y si no es False
+        - Return -> Boolean: si se pudo crear el nuevo quickpass el resultado es True y si no es False
     */
         boolean isSuccessfull = false;
         int availableIndex = nullIndexFinder(quickpassEnServicio,true);
@@ -89,6 +95,12 @@ public class GestorQuickPass {
     // ----- DELETE -----
     // Delete by codigo Quickpass
     public boolean deleteQuickPassCodigo(int codigo){
+        /*
+            descripcion:
+            
+            - Parameter -> dataType variableName: description.
+            - Return -> dataType variableName: description.
+        */
         boolean isSuccessfull = false;
         int availableIndex = nullIndexFinder(quickpassEliminados,true);
         if(availableIndex != -1){
@@ -156,8 +168,8 @@ public class GestorQuickPass {
         de tipo quickpass y retornar un string con todos los que encuentre que no 
         sean null.
 
-        Parameter -> none
-        Return -> String
+        - Parameter -> none
+        - Return -> String
         */
         String sResult = null;
         for (Quickpass qp : this.quickpassEnServicio) {
