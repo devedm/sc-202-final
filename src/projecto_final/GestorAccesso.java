@@ -207,45 +207,29 @@ public class GestorAccesso {
     }
 
     public void filterByFilial(String filial) {
-        // Obtener registros del archivo
-        String[][] registros = readFile();
+        String[][] registros = readFile(); // Obtener registros del archivo
 
-        // Verificar si el archivo está vacío o no tiene datos
         if (registros == null || registros.length == 0) {
-            JOptionPane.showMessageDialog(null,
-                    "No se encontraron registros. El archivo está vacío o no tiene datos.",
-                    "Sin resultados",
-                    JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("No hay registros para mostrar.");
             return;
-        }
+        } else {
+            StringBuilder resultados = new StringBuilder("Registros para la filial: " + filial + "\n\n");
 
-        // Filtrar registros por la filial
-        StringBuilder historialFilial = new StringBuilder("Historial de accesos para la filial: " + filial + "\n\n");
-        boolean encontrado = false; // Verifica si encontramos algún registro
+            // Recorremos el arreglo bidimensional para buscar coincidencias
+            for (int i = 0; i < registros.length; i++) {
+                if (registros[i][3].contains("Filial: " + filial)) {
+                    resultados.append(String.join(" - ", registros[i])).append("\n");
+                }
+            }
 
-        for (String[] registro : registros) {
-            if (registro[3].contains("Filial: " + filial)) {
-                // Agregar al historial de la filial
-                historialFilial.append(registro[0]) // Fecha
-                        .append(" | ").append(registro[1]) // Acción
-                        .append(" | ").append(registro[2]) // Detalles
-                        .append("\n");
-                encontrado = true;
+            // Comprobar si se encontraron registros
+            if (resultados.length() > 0) {
+                JOptionPane.showMessageDialog(null, resultados.toString(), "Registros de Acceso por Filial", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontraron registros para la filial: " + filial, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
             }
         }
 
-        // Mostrar resultados o indicar que no hay registros para esa filial
-        if (encontrado) {
-            JOptionPane.showMessageDialog(null,
-                    historialFilial.toString(),
-                    "Historial de Accesos por Filial",
-                    JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null,
-                    "No se encontraron registros de acceso para la filial: " + filial,
-                    "Sin resultados",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
     }
 
 }
