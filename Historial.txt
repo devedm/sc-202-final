@@ -1,30 +1,3 @@
 Fecha - Accion - Detalles - Quickpass - 
-21/11/2024_03:54:21 - Crear_QuickPass - Completado - Codigo: 1011234567 Filial: 1 Placa: 1 Estado: Activo - 
-21/11/2024_21:43:49 - Crear_QuickPass - Completado - Codigo: 1012222222 Filial: 2 Placa: 2 Estado: Activo - 
-21/11/2024_21:56:05 - Crear_QuickPass - Completado - Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo - 
-21/11/2024_21:56:05 - Aceptado - Entrada - Quickpass: Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo - 
-21/11/2024_21:56:05 - Rechazado - Entrada - Quickpass: Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Inactivo - 
-21/11/2024_21:56:05 - Rechazado - Entrada - Quickpass: Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Inactivo - 
-24/11/2024_09:00:09 - Crear_QuickPass - Completado - Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_09:00:09 - Aceptado - Entrada - Quickpass: Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_09:15:29 - Crear_QuickPass - Completado - Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_09:15:29 - Aceptado - Entrada - Quickpass: Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_09:19:01 - Crear_QuickPass - Completado - Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_09:22:47 - Crear_QuickPass - Completado - Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_09:26:04 - Crear_QuickPass - Completado - Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_09:35:44 - Crear_QuickPass - Completado - Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_09:35:44 - Aceptado - Entrada - Quickpass: Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_09:35:44 - Aceptado - Entrada - Quickpass: Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_09:40:35 - Crear_QuickPass - Completado - Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_09:40:35 - Aceptado - Entrada - Quickpass: Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_09:43:14 - Crear_QuickPass - Completado - Codigo: 1011012345 Filial: 1 Placa: 12 Estado: Activo - 
-24/11/2024_09:43:14 - Aceptado - Entrada - Quickpass: Codigo: 1011012345 Filial: 1 Placa: 12 Estado: Activo - 
-24/11/2024_09:43:14 - Aceptado - Entrada - Quickpass: Codigo: 1011012345 Filial: 1 Placa: 12 Estado: Activo - 
-24/11/2024_10:25:24 - Crear_QuickPass - Completado - Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_10:25:24 - Aceptado - Entrada - Quickpass: Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_10:25:24 - Aceptado - Entrada - Quickpass: Codigo: 1011012345 Filial: 1 Placa: 23 Estado: Activo - 
-24/11/2024_11:10:46 - Crear_QuickPass - Completado - Codigo: 1011111111 Filial: 11 Placa: 32 Estado: Activo - 
-24/11/2024_11:10:46 - Aceptado - Entrada - Quickpass: Codigo: 1011111111 Filial: 11 Placa: 32 Estado: Activo - 
-24/11/2024_11:10:46 - Aceptado - Entrada - Quickpass: Codigo: 1011111111 Filial: 11 Placa: 32 Estado: Activo - 
-24/11/2024_11:14:24 - Crear_QuickPass - Completado - Codigo: 1011111111 Filial: 11 Placa: 23 Estado: Activo - 
-
+24/11/2024_11:59:54 - Crear_QuickPass - Completado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
+24/11/2024_11:59:54 - Entrada - Aceptado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
