@@ -252,10 +252,10 @@ public class InterfazJOption {
         } else {
             if(permiso.contentEquals("Aceptado")){
                 // Aceptado
-                JOptionPane.showMessageDialog(null, "Entrada aceptada para quickpass codigo: " + nCodigo);
+                JOptionPane.showMessageDialog(null, "Entrada Aceptada para quickpass codigo: " + nCodigo);
             } else {
                 // Rechazado
-                JOptionPane.showMessageDialog(null, "Entrada aceptada para quickpass codigo: " + nCodigo);
+                JOptionPane.showMessageDialog(null, "Entrada Rechazada para quickpass codigo: " + nCodigo);
             }
         }
     }
@@ -269,10 +269,10 @@ public class InterfazJOption {
         } else {
             if(permiso.contentEquals("Aceptado")){
                 // Aceptado
-                JOptionPane.showMessageDialog(null, "Salida aceptada para quickpass codigo: " + nCodigo);
+                JOptionPane.showMessageDialog(null, "Salida Aceptada para quickpass codigo: " + nCodigo);
             } else {
                 // Rechazado
-                JOptionPane.showMessageDialog(null, "Salida aceptadav v  para quickpass codigo: " + nCodigo);
+                JOptionPane.showMessageDialog(null, "Salida Rechazada para quickpass codigo: " + nCodigo);
             }
         }
     }
@@ -310,7 +310,6 @@ public class InterfazJOption {
     
     public void accesoPorFilial(){
         JOptionPane.showMessageDialog(null, "Resultados");
-        gestorQuickpass.readFileTest();
     }
     
     public void accesoPorFechas(){
