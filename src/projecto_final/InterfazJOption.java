@@ -10,11 +10,10 @@ import javax.swing.JOptionPane;
  *
  * @author minio
  */
-
 public class InterfazJOption {
-    
-    public String mainMenuMsj, gestionMenuMsj, accesoMenuMsj, reportesMenuMsj, invalidMenuOptionMsj,inputCodigoMsj,inputFilialMsj,inputPlacaMsj;
-    public int optionMain,optionGestion,optionAcceso,optionReportes;
+
+    public String mainMenuMsj, gestionMenuMsj, accesoMenuMsj, reportesMenuMsj, invalidMenuOptionMsj, inputCodigoMsj, inputFilialMsj, inputPlacaMsj;
+    public int optionMain, optionGestion, optionAcceso, optionReportes;
     public GestorQuickPass gestorQuickpass;
     public String noExisteQP;
 
@@ -29,116 +28,131 @@ public class InterfazJOption {
         this.inputFilialMsj = "Ingrese un Filial: El numero de apartamento del inquilino dueño del Quickpass";
         this.inputPlacaMsj = "Ingrese un Placa: El numero de placa del vehiculo";
         this.invalidMenuOptionMsj = "Opcion no valida, intenta nuevamente";
-        
+
         // option integers
         this.optionMain = -1;
         this.optionGestion = -1;
         this.optionAcceso = -1;
         this.optionReportes = -1;
-        
+
         // Errores
         this.noExisteQP = "No hay ningun Quickpass creado";
     }
-    public void mainMenu(){
-        do {   
-            try{
+
+    public void mainMenu() {
+        do {
+            try {
                 optionMain = Integer.parseInt(JOptionPane.showInputDialog(null, mainMenuMsj));
             } catch (NumberFormatException e) {
                 System.out.println("Error:" + e);
             }
             switch (optionMain) {
-                case 1 -> gestionMenu();
-                case 2 -> accesoMenu();
-                case 3 -> reportesMenu();
-                case 0 -> JOptionPane.showMessageDialog(null, "Saliendo");
-                default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
+                case 1 ->
+                    gestionMenu();
+                case 2 ->
+                    accesoMenu();
+                case 3 ->
+                    reportesMenu();
+                case 0 ->
+                    JOptionPane.showMessageDialog(null, "Saliendo");
+                default ->
+                    JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } while (optionMain != 0);       
+        } while (optionMain != 0);
     }
-    public void gestionMenu(){
+
+    public void gestionMenu() {
         do {
-            try{
+            try {
                 optionGestion = Integer.parseInt(JOptionPane.showInputDialog(null, gestionMenuMsj));
             } catch (NumberFormatException e) {
                 System.out.println("Error:" + e);
             }
             switch (optionGestion) {
-                case 1 -> createQuickpass();
-                case 2 -> queryQuickpass();
-                case 3 -> deleteQuickpass();
-                case 4 -> changeEstadoQuickpass();
-                case 5 -> inQuickpass();
-                case 6 -> outQuickpass();
-                case 0 -> JOptionPane.showMessageDialog(null, "Volviendo al menu anterior");
-                default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } while (optionGestion != 0);
+                case 1 ->
+                    createQuickpass();
+                case 2 ->
+                    queryQuickpass();
+                case 3 ->
+                    deleteQuickpass();
+                case 4 ->
+                    changeEstadoQuickpass();
+                case 5 ->
+                    inQuickpass();
+                case 6 ->
+                    outQuickpass();
+                case 0 ->
+                    JOptionPane.showMessageDialog(null, "Volviendo al menu anterior");
+                default ->
+                    JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } while (optionGestion != 0);
     }
 
-    public void createQuickpass(){
+    public void createQuickpass() {
         int ncodigo;
         String nFilial;
         String nplaca;
-        
-        try{
-            ncodigo = Integer.parseInt(JOptionPane.showInputDialog(null,inputCodigoMsj));
-            if(gestorQuickpass.codigoValidator(ncodigo)){
-                nFilial = JOptionPane.showInputDialog(null,inputFilialMsj);
-                nplaca = JOptionPane.showInputDialog(null,inputPlacaMsj);
+
+        try {
+            ncodigo = Integer.parseInt(JOptionPane.showInputDialog(null, inputCodigoMsj));
+            if (gestorQuickpass.codigoValidator(ncodigo)) {
+                nFilial = JOptionPane.showInputDialog(null, inputFilialMsj);
+                nplaca = JOptionPane.showInputDialog(null, inputPlacaMsj);
                 gestorQuickpass.createQuickpass(ncodigo, nFilial, nplaca);
                 JOptionPane.showMessageDialog(null, "Quickpass creado correctamente");
             } else {
                 JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
-            } 
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
-        }    
-    } 
-    public void queryQuickpass(){
+        }
+    }
+
+    public void queryQuickpass() {
         int opcion = 0;
         int nCodigo = 0;
         String nPlaca = null;
         String nFilial = null;
         String result = null;
-        
-        
-        if(gestorQuickpass.nullIndexFinder(gestorQuickpass.quickpassEnServicio, false) != -1){
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(null,"Elija una opcion:\n1)Busqueda por Placa\n2)Busqueda por Codigo\n3)Busqueda por Filial\n4)Mostrar todos"));
+
+        if (gestorQuickpass.nullIndexFinder(gestorQuickpass.quickpassEnServicio, false) != -1) {
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "Elija una opcion:\n1)Busqueda por Placa\n2)Busqueda por Codigo\n3)Busqueda por Filial\n4)Mostrar todos"));
             switch (opcion) {
                 case 1 -> {
-                    try{
-                        nPlaca = JOptionPane.showInputDialog(null,inputPlacaMsj);
+                    try {
+                        nPlaca = JOptionPane.showInputDialog(null, inputPlacaMsj);
                     } catch (NumberFormatException e) {
                         System.out.println("Error:" + e);
                     }
                     result = gestorQuickpass.getPlacaQuickpass(nPlaca);
-                    if(result!= null){
+                    if (result != null) {
                         JOptionPane.showMessageDialog(null, result);
                     } else {
                         JOptionPane.showMessageDialog(null, "No se han encontrado resultados");
                     }
                 }
                 case 2 -> {
-                    try{
-                        nCodigo = Integer.parseInt(JOptionPane.showInputDialog(null,inputCodigoMsj));
+                    try {
+                        nCodigo = Integer.parseInt(JOptionPane.showInputDialog(null, inputCodigoMsj));
                     } catch (NumberFormatException e) {
                         System.out.println("Error:" + e);
-                    } 
+                    }
                     result = gestorQuickpass.getCodigoQuickpass(nCodigo);
-                    if(result!= null){
+                    if (result != null) {
                         JOptionPane.showMessageDialog(null, result);
                     } else {
                         JOptionPane.showMessageDialog(null, "No se han encontrado resultados");
                     }
                 }
                 case 3 -> {
-                    try{
-                        nFilial = JOptionPane.showInputDialog(null,inputFilialMsj);
+                    try {
+                        nFilial = JOptionPane.showInputDialog(null, inputFilialMsj);
                     } catch (NumberFormatException e) {
                         System.out.println("Error:" + e);
-                    } 
+                    }
                     result = gestorQuickpass.getFilialQuickpass(nFilial);
-                    if(result!= null){
+                    if (result != null) {
                         JOptionPane.showMessageDialog(null, result);
                     } else {
                         JOptionPane.showMessageDialog(null, "No se han encontrado resultados");
@@ -146,31 +160,33 @@ public class InterfazJOption {
                 }
                 case 4 -> {
                     result = gestorQuickpass.getExistingQuickpass();
-                    if(result!= null){
+                    if (result != null) {
                         JOptionPane.showMessageDialog(null, "-> Resultado todos los quickpass:\n" + result);
                     } else {
                         JOptionPane.showMessageDialog(null, "No se han encontrado resultados");
                     }
                 }
-                default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
+                default ->
+                    JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "No hay ningun Quickpass creado");
         }
     }
-    public void deleteQuickpass(){
+
+    public void deleteQuickpass() {
         int opcion = 0;
         String nPlaca = null;
         int nCodigo = 0;
         String result = null;
-        if(gestorQuickpass.nullIndexFinder(gestorQuickpass.quickpassEnServicio, false) != -1){
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(null,"Elija una option:\n1)Eliminar por Placa\n2)Eliminar por Codigo"));
+        if (gestorQuickpass.nullIndexFinder(gestorQuickpass.quickpassEnServicio, false) != -1) {
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "Elija una option:\n1)Eliminar por Placa\n2)Eliminar por Codigo"));
             switch (opcion) {
                 case 1 -> {
-                    nPlaca = JOptionPane.showInputDialog(null,inputPlacaMsj);
+                    nPlaca = JOptionPane.showInputDialog(null, inputPlacaMsj);
                     result = gestorQuickpass.getPlacaQuickpass(nPlaca);
-                    if(result!= null){
-                        if(gestorQuickpass.deleteQuickPassPlaca(nPlaca)){
+                    if (result != null) {
+                        if (gestorQuickpass.deleteQuickPassPlaca(nPlaca)) {
                             JOptionPane.showMessageDialog(null, "Se ha eliminado\n" + result);
                         } else {
                             JOptionPane.showMessageDialog(null, "No se han podido borrar");
@@ -180,10 +196,10 @@ public class InterfazJOption {
                     }
                 }
                 case 2 -> {
-                    nCodigo = Integer.parseInt(JOptionPane.showInputDialog(null,inputCodigoMsj));
+                    nCodigo = Integer.parseInt(JOptionPane.showInputDialog(null, inputCodigoMsj));
                     result = gestorQuickpass.getCodigoQuickpass(nCodigo);
-                    if(result!= null){
-                        if(gestorQuickpass.deleteQuickPassCodigo(nCodigo)){
+                    if (result != null) {
+                        if (gestorQuickpass.deleteQuickPassCodigo(nCodigo)) {
                             JOptionPane.showMessageDialog(null, "Se ha eliminado\n" + result);
                         } else {
                             JOptionPane.showMessageDialog(null, "No se han podido borrar");
@@ -193,64 +209,66 @@ public class InterfazJOption {
                     }
                 }
 
-                default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
+                default ->
+                    JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "No hay ningun Quickpass creado");
         }
-        
+
     }
-    
-    public void changeEstadoQuickpass(){
+
+    public void changeEstadoQuickpass() {
         int opcion = 0;
         String nPlaca = null;
         int nCodigo = 0;
         String result = null;
-        
-        if(gestorQuickpass.nullIndexFinder(gestorQuickpass.quickpassEnServicio, false) != -1){
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(null,"Elija una option:\n1)Cambiar estado por Placa\n2)Cambiar estado por Codigo"));
+
+        if (gestorQuickpass.nullIndexFinder(gestorQuickpass.quickpassEnServicio, false) != -1) {
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "Elija una option:\n1)Cambiar estado por Placa\n2)Cambiar estado por Codigo"));
             switch (opcion) {
                 case 1 -> {
-                    try{
-                        nPlaca = JOptionPane.showInputDialog(null,inputPlacaMsj);
+                    try {
+                        nPlaca = JOptionPane.showInputDialog(null, inputPlacaMsj);
                     } catch (NumberFormatException e) {
                         System.out.println("Error:" + e);
                     }
                     result = gestorQuickpass.getPlacaQuickpass(nPlaca);
-                    if(result!= null && gestorQuickpass.setEstadoQuickpassByPlaca(nPlaca)){
+                    if (result != null && gestorQuickpass.setEstadoQuickpassByPlaca(nPlaca)) {
                         JOptionPane.showMessageDialog(null, gestorQuickpass.getPlacaQuickpass(nPlaca));
                     } else {
                         JOptionPane.showMessageDialog(null, "No se han encontrado resultados");
                     }
                 }
                 case 2 -> {
-                    try{
-                        nCodigo = Integer.parseInt(JOptionPane.showInputDialog(null,inputCodigoMsj));
+                    try {
+                        nCodigo = Integer.parseInt(JOptionPane.showInputDialog(null, inputCodigoMsj));
                     } catch (NumberFormatException e) {
                         System.out.println("Error:" + e);
-                    } 
+                    }
                     result = gestorQuickpass.getCodigoQuickpass(nCodigo);
-                    if(result!= null && gestorQuickpass.setEstadoQuickpassByCodigo(nCodigo)){
+                    if (result != null && gestorQuickpass.setEstadoQuickpassByCodigo(nCodigo)) {
                         JOptionPane.showMessageDialog(null, gestorQuickpass.getCodigoQuickpass(nCodigo));
                     } else {
                         JOptionPane.showMessageDialog(null, "No se han encontrado resultados");
                     }
                 }
-                default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
+                default ->
+                    JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, noExisteQP);
         }
     }
-    
-    public void inQuickpass(){
+
+    public void inQuickpass() {
         int nCodigo;
-        nCodigo = Integer.parseInt(JOptionPane.showInputDialog(null,inputCodigoMsj));
+        nCodigo = Integer.parseInt(JOptionPane.showInputDialog(null, inputCodigoMsj));
         String permiso = gestorQuickpass.useQuickpass(nCodigo, true);
-        if(permiso == null){
+        if (permiso == null) {
             JOptionPane.showMessageDialog(null, noExisteQP);
         } else {
-            if(permiso.contentEquals("Aceptado")){
+            if (permiso.contentEquals("Aceptado")) {
                 // Aceptado
                 JOptionPane.showMessageDialog(null, "Entrada Aceptada para quickpass codigo: " + nCodigo);
             } else {
@@ -259,15 +277,15 @@ public class InterfazJOption {
             }
         }
     }
-    
-    public void outQuickpass(){
+
+    public void outQuickpass() {
         int nCodigo;
-        nCodigo = Integer.parseInt(JOptionPane.showInputDialog(null,inputCodigoMsj));
+        nCodigo = Integer.parseInt(JOptionPane.showInputDialog(null, inputCodigoMsj));
         String permiso = gestorQuickpass.useQuickpass(nCodigo, true);
-        if(permiso == null){
+        if (permiso == null) {
             JOptionPane.showMessageDialog(null, noExisteQP);
         } else {
-            if(permiso.contentEquals("Aceptado")){
+            if (permiso.contentEquals("Aceptado")) {
                 // Aceptado
                 JOptionPane.showMessageDialog(null, "Salida Aceptada para quickpass codigo: " + nCodigo);
             } else {
@@ -277,7 +295,7 @@ public class InterfazJOption {
         }
     }
 
-    public void accesoMenu(){
+    public void accesoMenu() {
         /*
             Metodo que gestiona la interfaz de opciones para el modulo 2 de 
         gestion de accesso, el cual va mostrar 4 opciones para mostrar el 
@@ -290,23 +308,30 @@ public class InterfazJOption {
        
         Parameter: none
         Return: void
-        */
+         */
         do {
-            try{
+            try {
                 optionAcceso = Integer.parseInt(JOptionPane.showInputDialog(null, accesoMenuMsj));
             } catch (NumberFormatException e) {
                 System.out.println("Error:" + e);
             }
             switch (optionAcceso) {
-                case 1 -> accesoPorFilial();
-                case 2 -> accesoPorFechas();
-                case 3 -> accesoPorPlaca();
-                case 4 -> accesoPorCodigo();
-                case 0 -> JOptionPane.showMessageDialog(null, "Volviendo al menu anterior");
-                default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } while (optionAcceso != 0);
+                case 1 ->
+                    accesoPorFilial();
+                case 2 ->
+                    accesoPorFechas();
+                case 3 ->
+                    accesoPorPlaca();
+                case 4 ->
+                    accesoPorCodigo();
+                case 0 ->
+                    JOptionPane.showMessageDialog(null, "Volviendo al menu anterior");
+                default ->
+                    JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } while (optionAcceso != 0);
     }
+<<<<<<< HEAD
     
     public void accesoPorFilial(){
         String filial = JOptionPane.showInputDialog(null, inputFilialMsj);
@@ -340,23 +365,69 @@ public class InterfazJOption {
         } else {
             JOptionPane.showMessageDialog(null, resultados[1]);
         }
+=======
+
+    public void accesoPorFilial() {
+        GestorAccesso gestor = new GestorAccesso();
+
+        // Solicitar al usuario la filial a consultar
+        String filial = JOptionPane.showInputDialog(null,
+                "Ingrese la filial que desea consultar:",
+                "Consulta por Filial",
+                JOptionPane.QUESTION_MESSAGE);
+
+        // Validar la entrada del usuario
+        if (filial == null || filial.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "Debe ingresar una filial válida.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return; // Salir si no hay entrada válida
+        }
+
+        // Llamar al método para filtrar los registros por filial
+        gestor.filterByFilial(filial);
     }
-    
-    public void reportesMenu(){
+
+    public void accesoPorFechas() {
+        JOptionPane.showMessageDialog(null, "Resultados");
+    }
+
+    public void accesoPorPlaca() {
+        JOptionPane.showMessageDialog(null, "Resultados");
+>>>>>>> dev
+    }
+
+    public void accesoPorCodigo() {
+        JOptionPane.showMessageDialog(null, "Resultados");
+    }
+
+    public void reportesMenu() {
         do {
+<<<<<<< HEAD
             try{
                 optionGestion = Integer.parseInt(JOptionPane.showInputDialog(null, reportesMenuMsj));
+=======
+            try {
+                optionGestion = Integer.parseInt(JOptionPane.showInputDialog(null, gestionMenuMsj));
+>>>>>>> dev
             } catch (NumberFormatException e) {
                 System.out.println("Error:" + e);
             }
             switch (optionGestion) {
-                case 1 -> createQuickpass();
-                case 2 -> queryQuickpass();
-                case 3 -> deleteQuickpass();
-                case 4 -> changeEstadoQuickpass();
-                case 0 -> JOptionPane.showMessageDialog(null, "Volviendo al menu anterior");
-                default -> JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } while (optionGestion != 0);
+                case 1 ->
+                    createQuickpass();
+                case 2 ->
+                    queryQuickpass();
+                case 3 ->
+                    deleteQuickpass();
+                case 4 ->
+                    changeEstadoQuickpass();
+                case 0 ->
+                    JOptionPane.showMessageDialog(null, "Volviendo al menu anterior");
+                default ->
+                    JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } while (optionGestion != 0);
     }
 }
