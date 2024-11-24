@@ -107,7 +107,7 @@ public class Quickpass implements Serializable{
     public String getStringQuickpass(boolean oneLine) {
         String result;
         if(oneLine){
-            result = "Codigo: " + String.valueOf(getCodigo()) + " Filial: " + getFilial() + " Placa: " + getPlaca() + " Estado: " + getEstadoString();
+            result = "Codigo: " + String.valueOf(getCodigo()) + ", Filial: " + getFilial() + ", Placa: " + getPlaca() + ", Estado: " + getEstadoString();
         } else {
             result = "Codigo: " + String.valueOf(getCodigo()) + "\nFilial: " + getFilial() + "\nPlaca: " + getPlaca() + "\nEstado: " + getEstadoString() + "\n";
         }

@@ -309,7 +309,13 @@ public class InterfazJOption {
     }
     
     public void accesoPorFilial(){
-        JOptionPane.showMessageDialog(null, "Resultados");
+        String filial = JOptionPane.showInputDialog(null, inputFilialMsj);
+        String [] resultados = gestorQuickpass.gestorAcceso.getFilialsQuickpass(filial);
+        if(!resultados[0].contentEquals("0")){
+            JOptionPane.showMessageDialog(null, "Se han encontrado " + resultados[0] + " resultados:\n" + resultados[1]);
+        } else {
+            JOptionPane.showMessageDialog(null, resultados[1]);
+        }
     }
     
     public void accesoPorFechas(){
@@ -317,17 +323,29 @@ public class InterfazJOption {
     }
     
     public void accesoPorPlaca(){
-        JOptionPane.showMessageDialog(null, "Resultados");
+        String placa = JOptionPane.showInputDialog(null, inputPlacaMsj);
+        String [] resultados = gestorQuickpass.gestorAcceso.getPlacasQuickpass(placa);
+        if(!resultados[0].contentEquals("0")){
+            JOptionPane.showMessageDialog(null, "Se han encontrado " + resultados[0] + " resultados:\n" + resultados[1]);
+        } else {
+            JOptionPane.showMessageDialog(null, resultados[1]);
+        }
     }
 
     public void accesoPorCodigo(){
-        JOptionPane.showMessageDialog(null, "Resultados");
+        int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, inputCodigoMsj));
+        String [] resultados = gestorQuickpass.gestorAcceso.getCodigosQuickpass(codigo);
+        if(!resultados[0].contentEquals("0")){
+            JOptionPane.showMessageDialog(null, "Se han encontrado " + resultados[0] + " resultados:\n" + resultados[1]);
+        } else {
+            JOptionPane.showMessageDialog(null, resultados[1]);
+        }
     }
     
     public void reportesMenu(){
         do {
             try{
-                optionGestion = Integer.parseInt(JOptionPane.showInputDialog(null, gestionMenuMsj));
+                optionGestion = Integer.parseInt(JOptionPane.showInputDialog(null, reportesMenuMsj));
             } catch (NumberFormatException e) {
                 System.out.println("Error:" + e);
             }

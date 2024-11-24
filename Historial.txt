@@ -1,7 +1,5 @@
 Fecha - Accion - Detalles - Quickpass - 
-21/11/2024_03:54:21 - Crear_QuickPass - Completado - Codigo: 1011234567 Filial: 1 Placa: 1 Estado: Activo - 
-21/11/2024_21:43:49 - Crear_QuickPass - Completado - Codigo: 1012222222 Filial: 2 Placa: 2 Estado: Activo - 
-21/11/2024_21:56:05 - Crear_QuickPass - Completado - Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo - 
-21/11/2024_21:56:05 - Aceptado - Entrada - Quickpass: Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Activo - 
-21/11/2024_21:56:05 - Rechazado - Entrada - Quickpass: Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Inactivo - 
-21/11/2024_21:56:05 - Rechazado - Entrada - Quickpass: Codigo: 1011111111 Filial: 1 Placa: 1 Estado: Inactivo - 
+24/11/2024_11:12:48 - Crear_QuickPass - Completado - Codigo: 1011234567, Filial: b1, Placa: 123, Estado: Activo - 
+24/11/2024_11:12:48 - Crear_QuickPass - Completado - Codigo: 1017654321, Filial: c1, Placa: 321, Estado: Activo - 
+24/11/2024_11:12:48 - Entrada - Aceptado - Codigo: 1017654321, Filial: c1, Placa: 321, Estado: Activo - 
+24/11/2024_11:12:48 - Entrada - Aceptado - Codigo: 1011234567, Filial: b1, Placa: 123, Estado: Activo - 

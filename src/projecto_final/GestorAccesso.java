@@ -4,6 +4,7 @@
  */
 package projecto_final;
 
+import com.sun.source.tree.NewArrayTree;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -119,11 +120,9 @@ public class GestorAccesso {
                 bigString += line;
             }
             String[] logArray = bigString.split(" - ",-1);
-            System.out.println("bigString " + bigString);
-            System.out.println("row " + row);
-            for (String item : logArray) {
-                System.out.println(item);
-            }
+            //System.out.println("bigString " + bigString);
+            //System.out.println("row " + row);
+
             log2D = new String[row][col];
             
             for (int r = 0; r < log2D.length; r++) {
@@ -133,18 +132,77 @@ public class GestorAccesso {
                 }
             }
             
-            for (int i = 0; i < log2D.length; i++) {
-                for (int j = 0; j < log2D[i].length; j++) {
-                    //System.out.print(log2D[i][j] + " ");
-                }
-                //System.out.print("\n");
-            }
-            
             br.close();
              
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.print(e);
         }
         return log2D;
+    }
+    
+    public String[] getPlacasQuickpass(String placa){
+        String[][] biDimArr = readFile();
+        String[] arrayResultado = new String[2];
+        String resultados = "";
+        int index = 0;
+        
+        // loop por todos las filas del historial en la ubicacion index 1 donde esta la accion
+        for (int row = 0; row < biDimArr.length; row++) {      
+            // Limpiar de espacios el valor de cada item
+            String item = biDimArr[row][1].replaceAll("\\s", "");
+            // filtrar si dice entrada o salida
+            if(item.contentEquals("Entrada") || item.contentEquals("Salida")){
+                // crear array con elementos del quickpass
+                String[] quickpass = biDimArr[row][3].split(",");
+                // filtrar para quitar el text " Placa: " y que quede solo el valor de placa
+                String selectedItem = quickpass[2].replaceFirst(" Placa: ", "");
+                // evaluar si contiene el valor de placa ingresado
+                if(selectedItem.contentEquals(placa)){
+                    index ++;
+                    String fila = String.join(" - ",biDimArr[row][0], biDimArr[row][1], biDimArr[row][2], biDimArr[row][3]);
+                    resultados = resultados.concat(fila + "\n");
+                    System.out.print(biDimArr[row][3]);
+                }
+            }
+        }
+        // crea un array de String vacio si no se encontro o con los detalles encontrados
+        if(index > 0){
+            arrayResultado[0] = String.valueOf(index);
+            arrayResultado[1] = resultados;
+        } else {
+            arrayResultado[0] = String.valueOf(index);
+            arrayResultado[1] = "Sin Resultados";
+        }
+        return arrayResultado;
+    }
+    
+    public String[] getCodigosQuickpass(int ncodigo){
+        String codigo = String.valueOf(ncodigo);
+        String[][] biDimArr = readFile();
+        String[] arrayResultado = new String[2];
+        String resultados = "";
+        int index = 0;
+        
+        for (int row = 0; row < biDimArr.length; row++) {            
+            String item = biDimArr[row][1].replaceAll("\\s", "");
+            if(item.contentEquals("Entrada") || item.contentEquals("Salida")){
+                String[] quickpass = biDimArr[row][3].split(",");
+                String selectedItem = quickpass[0].replaceFirst("Codigo: ", "");
+                if(selectedItem.contentEquals(codigo)){
+                    index ++;
+                    String fila = String.join(" - ",biDimArr[row][0], biDimArr[row][1], biDimArr[row][2], biDimArr[row][3]);
+                    resultados = resultados.concat(fila + "\n");
+                    System.out.print(biDimArr[row][3]);
+                }
+            }
+        }
+        if(index > 0){
+            arrayResultado[0] = String.valueOf(index);
+            arrayResultado[1] = resultados;
+        } else {
+            arrayResultado[0] = String.valueOf(index);
+            arrayResultado[1] = "Sin Resultados";
+        }
+        return arrayResultado;
     }
 }
