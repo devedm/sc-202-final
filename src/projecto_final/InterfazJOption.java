@@ -331,17 +331,6 @@ public class InterfazJOption {
             }
         } while (optionAcceso != 0);
     }
-<<<<<<< HEAD
-    
-    public void accesoPorFilial(){
-        String filial = JOptionPane.showInputDialog(null, inputFilialMsj);
-        String [] resultados = gestorQuickpass.gestorAcceso.getFilialsQuickpass(filial);
-        if(!resultados[0].contentEquals("0")){
-            JOptionPane.showMessageDialog(null, "Se han encontrado " + resultados[0] + " resultados:\n" + resultados[1]);
-        } else {
-            JOptionPane.showMessageDialog(null, resultados[1]);
-        }
-    }
     
     public void accesoPorFechas(){
         JOptionPane.showMessageDialog(null, "Resultados");
@@ -365,10 +354,9 @@ public class InterfazJOption {
         } else {
             JOptionPane.showMessageDialog(null, resultados[1]);
         }
-=======
-
+    }
+    
     public void accesoPorFilial() {
-        GestorAccesso gestor = new GestorAccesso();
 
         // Solicitar al usuario la filial a consultar
         String filial = JOptionPane.showInputDialog(null,
@@ -386,31 +374,13 @@ public class InterfazJOption {
         }
 
         // Llamar al método para filtrar los registros por filial
-        gestor.filterByFilial(filial);
-    }
-
-    public void accesoPorFechas() {
-        JOptionPane.showMessageDialog(null, "Resultados");
-    }
-
-    public void accesoPorPlaca() {
-        JOptionPane.showMessageDialog(null, "Resultados");
->>>>>>> dev
-    }
-
-    public void accesoPorCodigo() {
-        JOptionPane.showMessageDialog(null, "Resultados");
+        gestorQuickpass.gestorAcceso.filterByFilial(filial);
     }
 
     public void reportesMenu() {
         do {
-<<<<<<< HEAD
             try{
                 optionGestion = Integer.parseInt(JOptionPane.showInputDialog(null, reportesMenuMsj));
-=======
-            try {
-                optionGestion = Integer.parseInt(JOptionPane.showInputDialog(null, gestionMenuMsj));
->>>>>>> dev
             } catch (NumberFormatException e) {
                 System.out.println("Error:" + e);
             }

@@ -120,19 +120,10 @@ public class GestorAccesso {
                 row++;
                 bigString += line;
             }
-<<<<<<< HEAD
             String[] logArray = bigString.split(" - ",-1);
             //System.out.println("bigString " + bigString);
             //System.out.println("row " + row);
 
-=======
-            String[] logArray = bigString.split(" - ", -1);
-            System.out.println("bigString " + bigString);
-            System.out.println("row " + row);
-            for (String item : logArray) {
-                System.out.println(item);
-            }
->>>>>>> dev
             log2D = new String[row][col];
 
             for (int r = 0; r < log2D.length; r++) {
@@ -141,18 +132,6 @@ public class GestorAccesso {
                     index++;
                 }
             }
-<<<<<<< HEAD
-            
-=======
-
-            for (int i = 0; i < log2D.length; i++) {
-                for (int j = 0; j < log2D[i].length; j++) {
-                    //System.out.print(log2D[i][j] + " ");
-                }
-                //System.out.print("\n");
-            }
-
->>>>>>> dev
             br.close();
 
         } catch (IOException e) {
@@ -160,7 +139,6 @@ public class GestorAccesso {
         }
         return log2D;
     }
-<<<<<<< HEAD
     
     public String[] getPlacasQuickpass(String placa){
         String[][] biDimArr = readFile();
@@ -227,7 +205,6 @@ public class GestorAccesso {
         }
         return arrayResultado;
     }
-=======
 
     public void filterByFilial(String filial) {
         // Obtener registros del archivo
@@ -271,5 +248,4 @@ public class GestorAccesso {
         }
     }
 
->>>>>>> dev
 }
