@@ -170,10 +170,13 @@ public class GestorAccesso {
         if(index > 0){
             arrayResultado[0] = String.valueOf(index);
             arrayResultado[1] = resultados;
+            this.writeFile("Consulta - " + "AccesoPorPlaca_" + placa + " - " + arrayResultado[0] + "_resultados" );
         } else {
             arrayResultado[0] = String.valueOf(index);
             arrayResultado[1] = "Sin Resultados";
+            this.writeFile("Consulta - " + "AccesoPorPlaca_" + placa + " - " + arrayResultado[0] + "_resultados" );
         }
+        
         return arrayResultado;
     }
     
@@ -200,9 +203,11 @@ public class GestorAccesso {
         if(index > 0){
             arrayResultado[0] = String.valueOf(index);
             arrayResultado[1] = resultados;
+            this.writeFile("Consulta - " + "AccesoPorCodigo_" + codigo + " - " + arrayResultado[0] + "_resultados" );
         } else {
             arrayResultado[0] = String.valueOf(index);
             arrayResultado[1] = "Sin Resultados";
+            this.writeFile("Consulta - " + "AccesoPorCodigo_" + codigo + " - " + arrayResultado[0] + "_resultados" );
         }
         return arrayResultado;
     }
@@ -227,8 +232,10 @@ public class GestorAccesso {
             // Comprobar si se encontraron registros
             if (resultados.length() > 0) {
                 JOptionPane.showMessageDialog(null, resultados.toString(), "Registros de Acceso por Filial", JOptionPane.INFORMATION_MESSAGE);
+                this.writeFile("Consulta - " + "AccesoPorFilial_" + filial + " - " + String.valueOf(resultados.length()) + "_resultados" );
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontraron registros para la filial: " + filial, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
+                this.writeFile("Consulta - " + "AccesoPorFilial_" + filial + " - " + String.valueOf(resultados.length()) + "_resultados" );;
             }
         }
 
@@ -263,9 +270,11 @@ public class GestorAccesso {
         if(index > 0){
             arrayResultado[0] = String.valueOf(index);
             arrayResultado[1] = resultados;
+            this.writeFile("Consulta - " + "AccesoPorFecha_Inicio:" + inicio + "_Fin:" + fin + " - " + arrayResultado[0] + "_resultados" );
         } else {
             arrayResultado[0] = String.valueOf(index);
             arrayResultado[1] = "Sin Resultados";
+            this.writeFile("Consulta - " + "AccesoPorFecha_Inicio:" + inicio + "_Fin:" + fin + " - " + arrayResultado[0] + "_resultados" );
         }
         return arrayResultado;
     }

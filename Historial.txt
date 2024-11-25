@@ -1,3 +1,5 @@
 Fecha - Accion - Detalles - Quickpass - 
 24/11/2024_11:59:54 - Crear_QuickPass - Completado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
 24/11/2024_11:59:54 - Entrada - Aceptado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
+25/11/2024_17:31:59 - Consulta - AccesoPorFecha_Inicio:24/11/2024_Fin:25/11/2024 - 1_resultados - 
+25/11/2024_17:31:59 - Consulta - AccesoPorFecha_Inicio:20/11/2024_Fin:20/11/2024 - 0_resultados - 
