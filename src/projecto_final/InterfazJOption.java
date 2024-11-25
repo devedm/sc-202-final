@@ -347,13 +347,7 @@ public class InterfazJOption {
     }
 
     public void accesoPorCodigo(){
-        int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, inputCodigoMsj));
-        String [] resultados = gestorQuickpass.gestorAcceso.getCodigosQuickpass(codigo);
-        if(!resultados[0].contentEquals("0")){
-            JOptionPane.showMessageDialog(null, "Se han encontrado " + resultados[0] + " resultados:\n" + resultados[1]);
-        } else {
-            JOptionPane.showMessageDialog(null, resultados[1]);
-        }
+        // codigo pendiente
     }
     
     public void accesoPorFilial() {

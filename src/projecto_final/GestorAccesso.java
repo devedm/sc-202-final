@@ -176,34 +176,8 @@ public class GestorAccesso {
         return arrayResultado;
     }
     
-    public String[] getCodigosQuickpass(int ncodigo){
-        String codigo = String.valueOf(ncodigo);
-        String[][] biDimArr = readFile();
-        String[] arrayResultado = new String[2];
-        String resultados = "";
-        int index = 0;
-        
-        for (int row = 0; row < biDimArr.length; row++) {            
-            String item = biDimArr[row][1].replaceAll("\\s", "");
-            if(item.contentEquals("Entrada") || item.contentEquals("Salida")){
-                String[] quickpass = biDimArr[row][3].split(",");
-                String selectedItem = quickpass[0].replaceFirst("Codigo: ", "");
-                if(selectedItem.contentEquals(codigo)){
-                    index ++;
-                    String fila = String.join(" - ",biDimArr[row][0], biDimArr[row][1], biDimArr[row][2], biDimArr[row][3]);
-                    resultados = resultados.concat(fila + "\n");
-                    System.out.print(biDimArr[row][3]);
-                }
-            }
-        }
-        if(index > 0){
-            arrayResultado[0] = String.valueOf(index);
-            arrayResultado[1] = resultados;
-        } else {
-            arrayResultado[0] = String.valueOf(index);
-            arrayResultado[1] = "Sin Resultados";
-        }
-        return arrayResultado;
+    public void getCodigosQuickpass(){
+        // codigo pendiente
     }
 
     public void filterByFilial(String filial) {
