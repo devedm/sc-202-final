@@ -223,8 +223,7 @@ public class GestorAccesso {
 
             // Recorremos el arreglo bidimensional para buscar coincidencias
             for (int i = 0; i < registros.length; i++) {
-                Boolean isAccessReg = registros[i][1].contentEquals(" Entrada ") || registros[i][1].contentEquals(" Salida ");
-                if (isAccessReg && registros[i][3].contains("Filial: " + filial)) {
+                if (registros[i][3].contains("Filial: " + filial) && (registros[i][1].trim().contentEquals("Entrada") || registros[i][1].trim().contentEquals("Salida"))) {
                     resultados.append(String.join(" - ", registros[i])).append("\n");
                 }
             }

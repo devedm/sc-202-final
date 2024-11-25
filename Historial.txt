@@ -3,3 +3,8 @@ Fecha - Accion - Detalles - Quickpass -
 24/11/2024_11:59:54 - Entrada - Aceptado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
 25/11/2024_17:31:59 - Consulta - AccesoPorFecha_Inicio:24/11/2024_Fin:25/11/2024 - 1_resultados - 
 25/11/2024_17:31:59 - Consulta - AccesoPorFecha_Inicio:20/11/2024_Fin:20/11/2024 - 0_resultados - 
+25/11/2024_17:34:29 - Consulta - AccesoPorFilial_1 - 29_resultados - 
+25/11/2024_17:36:54 - Consulta - AccesoPorFilial_1 - 29_resultados - 
+25/11/2024_17:37:22 - Consulta - AccesoPorFilial_1 - 237_resultados - 
+25/11/2024_17:40:10 - Consulta - AccesoPorFilial_1 - 128_resultados - 
+25/11/2024_17:40:10 - Consulta - AccesoPorFilial_1 - 128_resultados - 
