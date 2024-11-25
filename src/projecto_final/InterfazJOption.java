@@ -4,6 +4,9 @@
  */
 package projecto_final;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -332,8 +335,29 @@ public class InterfazJOption {
         } while (optionAcceso != 0);
     }
     
+    public static boolean fechaValida(String fecha, String format){
+        DateFormat df = new SimpleDateFormat(format);
+        df.setLenient(false);
+        try{
+            df.parse(fecha);
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(null, "Error, entrada invalida" + e);
+            return false;
+        }
+        return true;
+    }
+    
     public void accesoPorFechas(){
-        JOptionPane.showMessageDialog(null, "Resultados");
+        String inicio = JOptionPane.showInputDialog(null, "Ingrese una fecha de inicio en formato dd/mm/aaaa por ejemplo 25/12/2024:");
+        String fin = JOptionPane.showInputDialog(null, "Ingrese una fecha de fin en formato dd/mm/aaaa por ejemplo 25/12/2024:");
+        if (fechaValida(inicio,"dd/MM/yyyy") && fechaValida(fin,"dd/MM/yyyy")) {
+            String [] resultados = gestorQuickpass.gestorAcceso.getFechasQuickpass(inicio, fin);
+            if(!resultados[0].contentEquals("0")){
+                JOptionPane.showMessageDialog(null, "Se han encontrado " + resultados[0] + " resultados:\n" + resultados[1]);
+            } else {
+                JOptionPane.showMessageDialog(null, resultados[1]);
+            }
+        }
     }
     
     public void accesoPorPlaca(){

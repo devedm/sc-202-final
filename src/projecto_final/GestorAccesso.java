@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -217,7 +218,8 @@ public class GestorAccesso {
 
             // Recorremos el arreglo bidimensional para buscar coincidencias
             for (int i = 0; i < registros.length; i++) {
-                if (registros[i][3].contains("Filial: " + filial)) {
+                Boolean isAccessReg = registros[i][1].contentEquals(" Entrada ") || registros[i][1].contentEquals(" Salida ");
+                if (isAccessReg && registros[i][3].contains("Filial: " + filial)) {
                     resultados.append(String.join(" - ", registros[i])).append("\n");
                 }
             }
@@ -231,5 +233,43 @@ public class GestorAccesso {
         }
 
     }
+    
+    public String[] getFechasQuickpass(String inicio, String fin){
+        String[][] biDimArr = readFile();
+        String[] arrayResultado = new String[2];
+        String resultados = "";
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        int index = 0;
+        
+        for (int row = 0; row < biDimArr.length; row++) {            
+            String item = biDimArr[row][1].replaceAll("\\s", "");
+            if(item.contentEquals("Entrada") || item.contentEquals("Salida")){
+                try{
+                    Date fechaItem = format.parse(biDimArr[row][0].split("_")[0]);
+                    Date fechaInicio = format.parse(inicio);
+                    Date fechaFinal = format.parse(fin);
+
+                    if(fechaItem.compareTo(fechaInicio) >= 0 && fechaItem.compareTo(fechaFinal) <= 0){
+                        index ++;
+                        String fila = String.join(" - ",biDimArr[row][0], biDimArr[row][1], biDimArr[row][2], biDimArr[row][3]);
+                        resultados = resultados.concat(fila + "\n");
+                        System.out.print(biDimArr[row][3]);
+                    }
+                } catch (ParseException e) {
+                    JOptionPane.showMessageDialog(null, "Error, entrada invalida" + e);
+                }
+            }
+        }
+        if(index > 0){
+            arrayResultado[0] = String.valueOf(index);
+            arrayResultado[1] = resultados;
+        } else {
+            arrayResultado[0] = String.valueOf(index);
+            arrayResultado[1] = "Sin Resultados";
+        }
+        return arrayResultado;
+    }
+    
+    
 
 }
