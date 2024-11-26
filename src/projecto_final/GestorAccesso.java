@@ -30,7 +30,7 @@ public class GestorAccesso {
     // Attributes
     String txtPath = "Historial.txt";
     File archivo = new File(txtPath);
-    Date currentDate = new Date();
+    Date currentDate;
     DateFormat dateF = new SimpleDateFormat("dd/MM/yyyy_HH:mm:ss");
 
     // Constructor
@@ -74,6 +74,7 @@ public class GestorAccesso {
             - Return -> String: es una hora en formato dd/MM/yyyy_HH:mm:ss //https://www.digitalocean.com/community/tutorials/java-simpledateformat-java-date-format
          */
         String timestamp;
+        currentDate = new Date();
         dateF.setTimeZone(TimeZone.getTimeZone("CST"));
         timestamp = dateF.format(currentDate.getTime());
         return timestamp;
@@ -214,6 +215,7 @@ public class GestorAccesso {
 
     public void filterByFilial(String filial) {
         String[][] registros = readFile(); // Obtener registros del archivo
+        int index = 0;
 
         if (registros == null || registros.length == 0) {
             System.out.println("No hay registros para mostrar.");
@@ -225,16 +227,17 @@ public class GestorAccesso {
             for (int i = 0; i < registros.length; i++) {
                 if (registros[i][3].contains("Filial: " + filial) && (registros[i][1].trim().contentEquals("Entrada") || registros[i][1].trim().contentEquals("Salida"))) {
                     resultados.append(String.join(" - ", registros[i])).append("\n");
+                    index ++;
                 }
             }
 
             // Comprobar si se encontraron registros
             if (resultados.length() > 0) {
                 JOptionPane.showMessageDialog(null, resultados.toString(), "Registros de Acceso por Filial", JOptionPane.INFORMATION_MESSAGE);
-                this.writeFile("Consulta - " + "AccesoPorFilial_" + filial + " - " + String.valueOf(resultados.length()) + "_resultados" );
+                this.writeFile("Consulta - " + "AccesoPorFilial_" + filial + " - " + String.valueOf(index) + "_resultados" );
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontraron registros para la filial: " + filial, "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
-                this.writeFile("Consulta - " + "AccesoPorFilial_" + filial + " - " + String.valueOf(resultados.length()) + "_resultados" );;
+                this.writeFile("Consulta - " + "AccesoPorFilial_" + filial + " - " + String.valueOf(index) + "_resultados" );;
             }
         }
 
