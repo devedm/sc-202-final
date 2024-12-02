@@ -428,7 +428,7 @@ public class InterfazJOption {
     }
     
     public void getAllAccesos(){
-        
+
     }
     
     public void getAllFilial(){
@@ -436,7 +436,22 @@ public class InterfazJOption {
     }
     
     public void getAllCreatedQuickPass(){
+        /*
+            Este metodo usa el metodo de la clase GestorQuickPass llamado 
+        getExistingQuickpass() para traer un String con la informacion de los 
+        quickpass que se han creado por ende estan en la lista de 
+        quickpassEnServicio.
         
+       
+        Parameter: none
+        Return: void
+         */
+        String resultados = gestorQuickpass.getExistingQuickpass();
+        if(!resultados.isBlank() | !resultados.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Se han encontrado " + String.valueOf(resultados.split("----------").length -1) + " resultados:\n" + resultados);
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay ningun quickpass");
+        }
     }
     
     public void getAllQuickpassStatus(){
@@ -444,7 +459,26 @@ public class InterfazJOption {
     }
     
     public void getAllDeletedQuickpass(){
+        /*
+            Este metodo usa el metodo de la clase GestorQuickPass llamado 
+        getDeletedQuickpass() para traer un String con la informacion de los 
+        quickpass que se han eliminado por ende estan en la lista de 
+        quickpassEliminados.
         
+       
+        Parameter: none
+        Return: void
+         */
+        // crea string con lista de quickpass eliminados
+        String resultados = gestorQuickpass.getDeletedQuickpass();
+
+        if(!resultados.isBlank() | !resultados.isEmpty()){
+            // filtra si la lista no esta en blanco entonces imprime el contenido
+            JOptionPane.showMessageDialog(null, "Se han encontrado " + String.valueOf(resultados.split("----------").length -1) + " resultados:\n" + resultados);
+        } else {
+            // si esta vacio entonces muestra un mensaje de que no hay items
+            JOptionPane.showMessageDialog(null, "No hay quickpass eliminados");
+        }
     }
     
 }
