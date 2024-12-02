@@ -36,8 +36,6 @@ public class GestorAccesso {
     String created = "created.ser";
     String deleted = "deleted.ser";
     File archivo = new File(txtPath);
-    File createdQuickpass = new File(created);
-    File deletedQuickpass = new File(deleted);
     Date currentDate;
     DateFormat dateF = new SimpleDateFormat("dd/MM/yyyy_HH:mm:ss");
 
@@ -133,7 +131,7 @@ public class GestorAccesso {
     
     public Quickpass[] readDeletedQuickpass(){
         Quickpass[] quickpassDeleted = null;
-        try (FileInputStream fs = new FileInputStream(created); ObjectInputStream os = new ObjectInputStream(fs)){
+        try (FileInputStream fs = new FileInputStream(deleted); ObjectInputStream os = new ObjectInputStream(fs)){
             quickpassDeleted = (Quickpass[])os.readObject();
             
             System.out.println("Deleted Quickpass");
