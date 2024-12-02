@@ -4,6 +4,8 @@
  */
 package projecto_final;
 
+import java.io.FileNotFoundException;
+
 /**
  *
  * @author minio
@@ -17,13 +19,35 @@ public class GestorQuickPass {
     public Quickpass quickpassEliminados[];
     GestorAccesso gestorAcceso = null;
     public int arrayLengh;
-    
 
     public GestorQuickPass() {
         this.arrayLengh = 10;
         this.quickpassEnServicio = new Quickpass[arrayLengh];
         this.quickpassEliminados = new Quickpass[arrayLengh];
         this.gestorAcceso = new GestorAccesso();
+        
+        // Generar quickpass creados desde el archivo created.ser
+        
+        // crear array con objetos
+        Quickpass[] tempCreated = this.gestorAcceso.readCreatedQuickpass();
+        // insertar objectos creados en lista de quickpass
+        if (tempCreated != null){
+            for (int i = 0; i < quickpassEnServicio.length; i++) {
+                if (tempCreated[i] != null){
+                    quickpassEnServicio[i]=tempCreated[i];
+                }
+            }
+        }
+        // crear array con objetos
+        Quickpass[] tempDeleted = this.gestorAcceso.readDeletedQuickpass();
+        // insertar objectos creados en lista de quickpass
+        if (tempDeleted != null){
+            for (int i = 0; i < quickpassEliminados.length; i++) {
+                if (tempDeleted[i] != null){
+                    quickpassEliminados[i]=tempDeleted[i];
+                }
+            }
+        }
     }
     
     // Methods 
@@ -85,6 +109,7 @@ public class GestorQuickPass {
             this.quickpassEnServicio[availableIndex] = new Quickpass();
             this.quickpassEnServicio[availableIndex].setQuickpass(codigo,filial, placa);
             this.gestorAcceso.writeFile("Crear_QuickPass" + " - " + "Completado" + " - " + this.quickpassEnServicio[availableIndex].getStringQuickpass(true));
+            this.gestorAcceso.writeCreatedQuickpass(quickpassEnServicio);
             isSuccessfull = true;
         } else {
             this.gestorAcceso.writeFile("Crear_QuickPass" + " - " + "Error" + " - " + "no se pudo crear quickpass codigo:" + String.valueOf(codigo) + ",filial:" + filial + ",placa:" + placa);
@@ -109,6 +134,9 @@ public class GestorQuickPass {
                 if(this.quickpassEnServicio[i] != null && this.quickpassEnServicio[i].getCodigo() == codigo) {
                     this.quickpassEliminados[availableIndex] = this.quickpassEnServicio[i];
                     this.quickpassEnServicio[i] = null;
+                    this.gestorAcceso.writeFile("Eliminar_QuickPass" + " - " + "Completado" + " - " + this.quickpassEnServicio[availableIndex].getStringQuickpass(true));
+                    this.gestorAcceso.writeCreatedQuickpass(quickpassEnServicio);
+                    this.gestorAcceso.writeDeletedQuickpass(quickpassEliminados);
                     isSuccessfull = true;
                 }
             }
@@ -127,6 +155,8 @@ public class GestorQuickPass {
                 if(this.quickpassEnServicio[i] != null && this.quickpassEnServicio[i].getPlaca().contentEquals(placa)) {
                     this.quickpassEliminados[availableIndex] = this.quickpassEnServicio[i];
                     this.quickpassEnServicio[i] = null;
+                    this.gestorAcceso.writeCreatedQuickpass(quickpassEnServicio);
+                    this.gestorAcceso.writeDeletedQuickpass(quickpassEliminados);
                     isSuccessfull = true;
                 }
             }

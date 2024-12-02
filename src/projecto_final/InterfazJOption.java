@@ -404,24 +404,47 @@ public class InterfazJOption {
     public void reportesMenu() {
         do {
             try{
-                optionGestion = Integer.parseInt(JOptionPane.showInputDialog(null, reportesMenuMsj));
+                optionReportes = Integer.parseInt(JOptionPane.showInputDialog(null, reportesMenuMsj));
             } catch (NumberFormatException e) {
                 System.out.println("Error:" + e);
             }
-            switch (optionGestion) {
+            switch (optionReportes) {
                 case 1 ->
-                    createQuickpass();
+                    getAllAccesos();
                 case 2 ->
-                    queryQuickpass();
+                    getAllFilial();
                 case 3 ->
-                    deleteQuickpass();
+                    getAllCreatedQuickPass();
                 case 4 ->
-                    changeEstadoQuickpass();
+                    getAllQuickpassStatus();
+                case 5 ->
+                    getAllDeletedQuickpass();
                 case 0 ->
                     JOptionPane.showMessageDialog(null, "Volviendo al menu anterior");
                 default ->
                     JOptionPane.showMessageDialog(null, invalidMenuOptionMsj, "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } while (optionGestion != 0);
+        } while (optionReportes != 0);
     }
+    
+    public void getAllAccesos(){
+        
+    }
+    
+    public void getAllFilial(){
+        
+    }
+    
+    public void getAllCreatedQuickPass(){
+        
+    }
+    
+    public void getAllQuickpassStatus(){
+        
+    }
+    
+    public void getAllDeletedQuickpass(){
+        
+    }
+    
 }

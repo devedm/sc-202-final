@@ -1,12 +1,3 @@
 Fecha - Accion - Detalles - Quickpass - 
-24/11/2024_11:59:54 - Crear_QuickPass - Completado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
-24/11/2024_11:59:54 - Entrada - Aceptado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
-25/11/2024_17:31:59 - Consulta - AccesoPorFecha_Inicio:24/11/2024_Fin:25/11/2024 - 1_resultados - 
-25/11/2024_17:31:59 - Consulta - AccesoPorFecha_Inicio:20/11/2024_Fin:20/11/2024 - 0_resultados - 
-25/11/2024_18:48:29 - Consulta - AccesoPorFecha_Inicio:24/11/2024_Fin:25/11/2024 - 1_resultados - 
-25/11/2024_18:51:50 - Consulta - AccesoPorFilial_1 - 1_resultados - 
-25/11/2024_20:46:48 - Crear_QuickPass - Completado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
-25/11/2024_20:46:48 - Entrada - Aceptado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
-25/11/2024_20:46:48 - Consulta - AccesoPorFilial_1 - 2_resultados - 
-25/11/2024_20:46:48 - Entrada - Rechazado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Inactivo - 
-25/11/2024_20:46:48 - Consulta - AccesoPorFilial_1 - 3_resultados - 
+02/12/2024_16:55:24 - Crear_QuickPass - Completado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
+02/12/2024_16:55:30 - Crear_QuickPass - Completado - Codigo: 1013216547, Filial: 2, Placa: 2, Estado: Activo - 

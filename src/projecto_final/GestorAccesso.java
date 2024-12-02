@@ -4,12 +4,16 @@
  */
 package projecto_final;
 
-import com.sun.source.tree.NewArrayTree;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,7 +33,11 @@ public class GestorAccesso {
      */
     // Attributes
     String txtPath = "Historial.txt";
+    String created = "created.ser";
+    String deleted = "deleted.ser";
     File archivo = new File(txtPath);
+    File createdQuickpass = new File(created);
+    File deletedQuickpass = new File(deleted);
     Date currentDate;
     DateFormat dateF = new SimpleDateFormat("dd/MM/yyyy_HH:mm:ss");
 
@@ -79,6 +87,67 @@ public class GestorAccesso {
         timestamp = dateF.format(currentDate.getTime());
         return timestamp;
     }
+    
+    public void writeCreatedQuickpass(Quickpass[] quickpassArray){
+        try (FileOutputStream fs = new FileOutputStream(created)){
+            ObjectOutputStream os = new ObjectOutputStream(fs);
+            os.writeObject(quickpassArray);
+            os.close();
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void writeDeletedQuickpass(Quickpass[] quickpassArray){
+        try (FileOutputStream fs = new FileOutputStream(deleted)){
+            ObjectOutputStream os = new ObjectOutputStream(fs);
+            os.writeObject(quickpassArray);
+            os.close();
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public Quickpass[] readCreatedQuickpass(){
+        Quickpass[] quickpassCreated = null;
+        try (FileInputStream fs = new FileInputStream(created); ObjectInputStream os = new ObjectInputStream(fs)){
+            quickpassCreated = (Quickpass[])os.readObject();
+            
+            System.out.println("Created Quickpass");
+            for (Quickpass quickpass : quickpassCreated) {
+                if(quickpass != null){
+                    System.out.println(quickpass.toString());
+                }
+            }
+            
+            
+        } catch (IOException | ClassNotFoundException  e){
+            System.out.println("Error: " + e);
+        }
+        return quickpassCreated;
+    }
+    
+    public Quickpass[] readDeletedQuickpass(){
+        Quickpass[] quickpassDeleted = null;
+        try (FileInputStream fs = new FileInputStream(created); ObjectInputStream os = new ObjectInputStream(fs)){
+            quickpassDeleted = (Quickpass[])os.readObject();
+            
+            System.out.println("Deleted Quickpass");
+            for (Quickpass quickpass : quickpassDeleted) {
+                if(quickpass != null){
+                    System.out.println(quickpass.toString());
+                }
+            }
+            
+        } catch (IOException | ClassNotFoundException  e){
+            System.out.println("Error: " + e);
+        }
+        return quickpassDeleted;
+    }
 
     public void writeFile(String data) {
         /*
@@ -105,7 +174,12 @@ public class GestorAccesso {
 
     public String[][] readFile() {
         /*
-            
+            Este lee el archivo Historial.txt y convierte el contenido en un 
+        array bidimensional y lo retorna.
+        
+            - Parameter -> none
+            - Return -> Bidimentional String Array [row][col]
+        
          */
         String line = "";
         String bigString = "";
@@ -281,6 +355,4 @@ public class GestorAccesso {
         return arrayResultado;
     }
     
-    
-
 }
