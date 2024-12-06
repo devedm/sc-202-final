@@ -243,7 +243,7 @@ public class GestorQuickPass {
         - Parameter -> none
         - Return -> String
         */
-        String sResult = " ";
+        String sResult = "";
         for (Quickpass qp : this.quickpassEnServicio) {
             if (qp != null) {
                 String qpString = qp.getStringQuickpass(false);
@@ -298,7 +298,7 @@ public class GestorQuickPass {
     }
     
     public String getDeletedQuickpass(){
-        String sResult = "Deleted Quickpass\n";
+        String sResult = "";
         for (Quickpass qp : this.quickpassEliminados) {
             if (qp != null) {
                 String qpString = qp.getStringQuickpass(false);
