@@ -338,14 +338,15 @@ public class GestorQuickPass {
         }
         return isValid;
     }
-        public String contarQuickpassEstados() {
+    
+    public String contarQuickpassEstados() {
         int activos = 0;
         int inactivos = 0;
 
         for (Quickpass quickpass : quickpassEnServicio) {
-            if (quickpass.getEstado() == Quickpass.Estados.ACTIVO) {
+            if ( quickpass != null && quickpass.getEstado() == Quickpass.Estados.ACTIVO) {
                 activos++;
-            } else if (quickpass.getEstado() == Quickpass.Estados.INACTIVO) {
+            } else if (quickpass != null && quickpass.getEstado() == Quickpass.Estados.INACTIVO) {
                 inactivos++;
             }
         }

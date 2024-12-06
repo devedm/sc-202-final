@@ -455,7 +455,8 @@ public class InterfazJOption {
     }
     
     public void getAllQuickpassStatus(){
-        
+        String resultado = gestorQuickpass.contarQuickpassEstados();
+        JOptionPane.showMessageDialog(null, resultado, "Totales de Quickpass", JOptionPane.INFORMATION_MESSAGE);
     }
     
     public void getAllDeletedQuickpass(){
@@ -480,9 +481,6 @@ public class InterfazJOption {
             JOptionPane.showMessageDialog(null, "No hay quickpass eliminados");
         }
     }
-    public void mostrarTotalesQuickpass() {
-        String resultado = gestorQuickpass.contarQuickpassEstados();
-        JOptionPane.showMessageDialog(null, resultado, "Totales de Quickpass", JOptionPane.INFORMATION_MESSAGE);
-    }
+
     
 }
