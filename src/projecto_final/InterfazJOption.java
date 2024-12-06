@@ -431,7 +431,27 @@ public class InterfazJOption {
 
     }
     
-    public void getAllFilial(){
+    public void getAllFilial(){     /*
+        Este método usa el método de la clase GestorQuickPass para traer el total de accesos 
+        agrupados por filial.
+        
+        Parámetros: ninguno
+        Retorno: void
+    */
+
+    // Llamamos al método que obtiene los accesos por filial
+    String[] resultados = gestorQuickpass.gestorAcceso.getAccesosPorFilial();
+
+    // Verificamos si hay resultados
+    if (resultados != null && !resultados[0].equals("0")) {
+        // Si hay resultados, mostramos el número de accesos encontrados y los detalles
+        JOptionPane.showMessageDialog(null, "Se han encontrado " + 
+            resultados[0] + " resultados:\n" + resultados[1]);
+    } else {
+        // Si no hay resultados, mostramos un mensaje indicando que no se han encontrado accesos
+        JOptionPane.showMessageDialog(null, "No se han encontrado accesos por filial.");
+    }
+}
         
     }
     
