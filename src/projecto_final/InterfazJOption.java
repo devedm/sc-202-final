@@ -7,6 +7,8 @@ package projecto_final;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Comparator;
 import javax.swing.JOptionPane;
 
 /**
@@ -334,11 +336,11 @@ public class InterfazJOption {
             }
         } while (optionAcceso != 0);
     }
-    
-    public static boolean fechaValida(String fecha, String format){
+
+    public static boolean fechaValida(String fecha, String format) {
         DateFormat df = new SimpleDateFormat(format);
         df.setLenient(false);
-        try{
+        try {
             df.parse(fecha);
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(null, "Error, entrada invalida" + e);
@@ -346,40 +348,40 @@ public class InterfazJOption {
         }
         return true;
     }
-    
-    public void accesoPorFechas(){
+
+    public void accesoPorFechas() {
         String inicio = JOptionPane.showInputDialog(null, "Ingrese una fecha de inicio en formato dd/mm/aaaa por ejemplo 25/12/2024:");
         String fin = JOptionPane.showInputDialog(null, "Ingrese una fecha de fin en formato dd/mm/aaaa por ejemplo 25/12/2024:");
-        if (fechaValida(inicio,"dd/MM/yyyy") && fechaValida(fin,"dd/MM/yyyy")) {
-            String [] resultados = gestorQuickpass.gestorAcceso.getFechasQuickpass(inicio, fin);
-            if(!resultados[0].contentEquals("0")){
+        if (fechaValida(inicio, "dd/MM/yyyy") && fechaValida(fin, "dd/MM/yyyy")) {
+            String[] resultados = gestorQuickpass.gestorAcceso.getFechasQuickpass(inicio, fin);
+            if (!resultados[0].contentEquals("0")) {
                 JOptionPane.showMessageDialog(null, "Se han encontrado " + resultados[0] + " resultados:\n" + resultados[1]);
             } else {
                 JOptionPane.showMessageDialog(null, resultados[1]);
             }
         }
     }
-    
-    public void accesoPorPlaca(){
+
+    public void accesoPorPlaca() {
         String placa = JOptionPane.showInputDialog(null, inputPlacaMsj);
-        String [] resultados = gestorQuickpass.gestorAcceso.getPlacasQuickpass(placa);
-        if(!resultados[0].contentEquals("0")){
+        String[] resultados = gestorQuickpass.gestorAcceso.getPlacasQuickpass(placa);
+        if (!resultados[0].contentEquals("0")) {
             JOptionPane.showMessageDialog(null, "Se han encontrado " + resultados[0] + " resultados:\n" + resultados[1]);
         } else {
             JOptionPane.showMessageDialog(null, resultados[1]);
         }
     }
 
-    public void accesoPorCodigo(){
+    public void accesoPorCodigo() {
         int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, inputCodigoMsj));
-        String [] resultados = gestorQuickpass.gestorAcceso.getCodigosQuickpass(codigo);
-        if(!resultados[0].contentEquals("0")){
+        String[] resultados = gestorQuickpass.gestorAcceso.getCodigosQuickpass(codigo);
+        if (!resultados[0].contentEquals("0")) {
             JOptionPane.showMessageDialog(null, "Se han encontrado " + resultados[0] + " resultados:\n" + resultados[1]);
         } else {
             JOptionPane.showMessageDialog(null, resultados[1]);
         }
     }
-    
+
     public void accesoPorFilial() {
 
         // Solicitar al usuario la filial a consultar
@@ -403,7 +405,7 @@ public class InterfazJOption {
 
     public void reportesMenu() {
         do {
-            try{
+            try {
                 optionReportes = Integer.parseInt(JOptionPane.showInputDialog(null, reportesMenuMsj));
             } catch (NumberFormatException e) {
                 System.out.println("Error:" + e);
@@ -428,34 +430,103 @@ public class InterfazJOption {
     }
     
     public void getAllAccesos(){
-
+        // Variables
+        String[] resultados = gestorQuickpass.gestorAcceso.getAllAccess();
+        if(resultados != null){
+            JOptionPane.showMessageDialog(null, "Total de accesos: " + String.valueOf(resultados.length)+ "\n" + printStringArrayWithLineBreak(resultados));
+        }
     }
     
-    public void getAllFilial(){     /*
-        Este método usa el método de la clase GestorQuickPass para traer el total de accesos 
+    public void getAllFilial(){
+        // Variables
+        String[] filiales = new String[10];
+        int filialIndex = 0;
+        String resultados = "";
+        
+        
+        // Crear lista de fililaes con repetidas
+        for (Quickpass quickpass : gestorQuickpass.quickpassEnServicio) {
+            if( quickpass != null){
+                filiales[filialIndex] = quickpass.getFilial();
+                filialIndex ++;
+            }
+        }
+        System.out.println("Antes de Sort:\n" + Arrays.toString(filiales));
+        // se ordena el array para organizar los items iguales juntos
+        Arrays.sort(filiales, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
+        System.out.println("Despues de Sort:\n" + Arrays.toString(filiales));
+        // Filtrar fililales repetidas
+        for (int i = 0; i < filiales.length; i++) {
+            if(filiales[i] != null && i > 0) {
+                if(filiales[i] == filiales[i-1]){
+                    filiales[i-1] = null; 
+                    filialIndex --;
+                }
+            }
+        } 
+        
+        // se crea un nuevo array con cada Filial que existe sin repetir
+        String[] filialesFiltradas = new String[filialIndex];
+        
+        for (int i = 0; i < filialesFiltradas.length; i++) {
+            filialesFiltradas[i] = filiales[i];
+        }
+        System.out.println("Filtradas:\n" + Arrays.toString(filialesFiltradas));
+        // Se buscan los resgistros de los accessos y guardan en el string de resultado
+        for (String filial : filialesFiltradas) {
+            String[] accessosFilial = gestorQuickpass.gestorAcceso.getFilialAccessByFilial(filial);
+            resultados = resultados + "-----------\nFilial:" + filial + "Accessos: " + String.valueOf(accessosFilial.length) + "\n" + printStringArrayWithLineBreak(accessosFilial) + "\n";
+        }
+        System.out.println("Resultados:\n" + String.valueOf(resultados.length()));
+        
+        if(filialesFiltradas.length > 0){
+            JOptionPane.showMessageDialog(null, resultados);
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay accessos registrados", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+    
+    public String printStringArrayWithLineBreak(String[] array){
+        String result = "";
+        for (String string : array) {
+            result = result + string + "\n";
+        }
+        return result;
+    }
+
+    public void getAllAccesos2() {
+        String resultados = gestorQuickpass.getExistingQuickpass();
+        if (!resultados.isBlank() | !resultados.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Se han encontrado " + String.valueOf(resultados.split("----------").length - 1) + " resultados:\n" + resultados);
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay ningun quickpass");
+        }
+
+    }
+
+    public void getAllFilial2() {
+        /*   Este método se usa el método de la clase GestorQuickPass para traer el total de accesos 
         agrupados por filial.
         
         Parámetros: ninguno
-        Retorno: void
-    */
+        Retorno: void */
 
-    // Llamamos al método que obtiene los accesos por filial
-    String[] resultados = gestorQuickpass.gestorAcceso.getAccesosPorFilial();
+        // Llamamos al método que obtiene los accesos por filial
+        String[] resultados = gestorQuickpass.gestorAcceso.getFilialAccessByFilial(inputFilialMsj);
 
-    // Verificamos si hay resultados
-    if (resultados != null && !resultados[0].equals("0")) {
-        // Si hay resultados, mostramos el número de accesos encontrados y los detalles
-        JOptionPane.showMessageDialog(null, "Se han encontrado " + 
-            resultados[0] + " resultados:\n" + resultados[1]);
-    } else {
-        // Si no hay resultados, mostramos un mensaje indicando que no se han encontrado accesos
-        JOptionPane.showMessageDialog(null, "No se han encontrado accesos por filial.");
+        // Verificamos si hay resultados
+        if (resultados != null && !resultados[0].equals("0")) {
+            // Si hay resultados, mostramos el número de accesos encontrados y los detalles
+            JOptionPane.showMessageDialog(null, "Se han encontrado "
+                    + resultados[0] + " resultados:\n" + resultados[1]);
+        } else {
+            // Si no hay resultados, mostramos un mensaje indicando que no se han encontrado accesos
+            JOptionPane.showMessageDialog(null, "No se han encontrado accesos por filial.");
+        }
     }
-}
-        
-    }
-    
-    public void getAllCreatedQuickPass(){
+
+    public void getAllCreatedQuickPass() {
         /*
             Este metodo usa el metodo de la clase GestorQuickPass llamado 
         getExistingQuickpass() para traer un String con la informacion de los 
@@ -467,18 +538,19 @@ public class InterfazJOption {
         Return: void
          */
         String resultados = gestorQuickpass.getExistingQuickpass();
-        if(!resultados.isBlank() | !resultados.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Se han encontrado " + String.valueOf(resultados.split("----------").length -1) + " resultados:\n" + resultados);
+        if (!resultados.isBlank() | !resultados.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Se han encontrado " + String.valueOf(resultados.split("----------").length - 1) + " resultados:\n" + resultados);
         } else {
             JOptionPane.showMessageDialog(null, "No hay ningun quickpass");
         }
     }
-    
-    public void getAllQuickpassStatus(){
-        
+
+    public void getAllQuickpassStatus() {
+        String resultado = gestorQuickpass.contarQuickpassEstados();
+        JOptionPane.showMessageDialog(null, resultado, "Totales de Quickpass", JOptionPane.INFORMATION_MESSAGE);
     }
-    
-    public void getAllDeletedQuickpass(){
+
+    public void getAllDeletedQuickpass() {
         /*
             Este metodo usa el metodo de la clase GestorQuickPass llamado 
         getDeletedQuickpass() para traer un String con la informacion de los 
@@ -492,13 +564,13 @@ public class InterfazJOption {
         // crea string con lista de quickpass eliminados
         String resultados = gestorQuickpass.getDeletedQuickpass();
 
-        if(!resultados.isBlank() | !resultados.isEmpty()){
+        if (!resultados.isBlank() | !resultados.isEmpty()) {
             // filtra si la lista no esta en blanco entonces imprime el contenido
-            JOptionPane.showMessageDialog(null, "Se han encontrado " + String.valueOf(resultados.split("----------").length -1) + " resultados:\n" + resultados);
+            JOptionPane.showMessageDialog(null, "Se han encontrado " + String.valueOf(resultados.split("----------").length - 1) + " resultados:\n" + resultados);
         } else {
             // si esta vacio entonces muestra un mensaje de que no hay items
             JOptionPane.showMessageDialog(null, "No hay quickpass eliminados");
         }
     }
-    
+
 }

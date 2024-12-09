@@ -2,3 +2,7 @@ Fecha - Accion - Detalles - Quickpass -
 02/12/2024_17:48:43 - Crear_QuickPass - Completado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
 02/12/2024_17:48:52 - Crear_QuickPass - Completado - Codigo: 1013216547, Filial: 2, Placa: 2, Estado: Activo - 
 02/12/2024_17:49:01 - Crear_QuickPass - Completado - Codigo: 1016543217, Filial: 3, Placa: 3, Estado: Activo - 
+02/12/2024_17:56:31 - Entrada - Aceptado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
+02/12/2024_17:56:38 - Entrada - Rechazado - Codigo: 1013216547, Filial: 2, Placa: 2, Estado: Inactivo - 
+09/12/2024_14:48:30 - Entrada - Aceptado - Codigo: 1011234567, Filial: 1, Placa: 1, Estado: Activo - 
+09/12/2024_14:48:45 - Entrada - Rechazado - Codigo: 1013216547, Filial: 2, Placa: 2, Estado: Inactivo - 

@@ -172,6 +172,7 @@ public class GestorQuickPass {
         if(quickpassEnServicio[index].getCodigo() == codigo){
             if(index != -1){
                 quickpassEnServicio[index].changeEstado();
+                this.gestorAcceso.writeCreatedQuickpass(quickpassEnServicio);
                 isSuccessfull = true;
             }
         }
@@ -184,6 +185,7 @@ public class GestorQuickPass {
         if(quickpassEnServicio[index].getPlaca().contentEquals(placa)){
             if(index != -1){
                 quickpassEnServicio[index].changeEstado();
+                this.gestorAcceso.writeCreatedQuickpass(quickpassEnServicio);
                 isSuccessfull = true;
             }
         }
@@ -338,4 +340,24 @@ public class GestorQuickPass {
         }
         return isValid;
     }
+    
+    public String contarQuickpassEstados() {
+        int activos = 0;
+        int inactivos = 0;
+        String sActivos = "";
+        String sInactivos= "";
+
+        for (Quickpass quickpass : quickpassEnServicio) {
+            if ( quickpass != null && quickpass.getEstado() == Quickpass.Estados.ACTIVO) {
+                activos++;
+                sActivos += "----- " + activos + "----- \n" + quickpass.getStringQuickpass(false);
+            } else if (quickpass != null && quickpass.getEstado() == Quickpass.Estados.INACTIVO) {
+                inactivos++;
+                sInactivos += "----- " + inactivos + "----- \n" + quickpass.getStringQuickpass(false);
+            }
+        }
+
+        return "Quickpass Activos: " + activos + "\n" + sActivos + "--------------" + "\nQuickpass Inactivos: " + inactivos + "\n" + sInactivos;
+    }
 }
+
