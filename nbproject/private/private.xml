@@ -12,10 +12,18 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Universidad/IntroPrograSC202/sc-202-final/src/projecto_final/Projecto_final.java</file>
             <file>file:/D:/Universidad/IntroPrograSC202/sc-202-final/src/projecto_final/GestorQuickPass.java</file>
             <file>file:/D:/Universidad/IntroPrograSC202/sc-202-final/src/projecto_final/InterfazJOption.java</file>
             <file>file:/D:/Universidad/IntroPrograSC202/sc-202-final/src/projecto_final/GestorAccesso.java</file>
+=======
+            <file>file:/C:/Users/Games/Pictures/U%20Fidelitas/cuatri%203/PROGRA/ProyectoFinalFUcion/sc-202-final/src/projecto_final/Projecto_final.java</file>
+            <file>file:/C:/Users/Games/Pictures/U%20Fidelitas/cuatri%203/PROGRA/ProyectoFinalFUcion/sc-202-final/src/projecto_final/GestorQuickPass.java</file>
+            <file>file:/C:/Users/Games/Pictures/U%20Fidelitas/cuatri%203/PROGRA/ProyectoFinalFUcion/sc-202-final/src/projecto_final/InterfazJOption.java</file>
+            <file>file:/C:/Users/Games/Pictures/U%20Fidelitas/cuatri%203/PROGRA/ProyectoFinalFUcion/sc-202-final/src/projecto_final/Quickpass.java</file>
+            <file>file:/C:/Users/Games/Pictures/U%20Fidelitas/cuatri%203/PROGRA/ProyectoFinalFUcion/sc-202-final/src/projecto_final/GestorAccesso.java</file>
+>>>>>>> dc5054654eed4c07fab6774e404a0f71c4adbe1b
         </group>
     </open-files>
 </project-private>
