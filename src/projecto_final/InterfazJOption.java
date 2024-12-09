@@ -429,7 +429,7 @@ public class InterfazJOption {
         } while (optionReportes != 0);
     }
     
-    public void getAllAccesos2(){
+    public void getAllAccesos(){
         // Variables
         String[] resultados = gestorQuickpass.gestorAcceso.getAllAccess();
         if(resultados != null){
@@ -437,7 +437,7 @@ public class InterfazJOption {
         }
     }
     
-    public void getAllFilial2(){
+    public void getAllFilial(){
         // Variables
         String[] filiales = new String[10];
         int filialIndex = 0;
@@ -495,7 +495,7 @@ public class InterfazJOption {
         return result;
     }
 
-    public void getAllAccesos() {
+    public void getAllAccesos2() {
         String resultados = gestorQuickpass.getExistingQuickpass();
         if (!resultados.isBlank() | !resultados.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Se han encontrado " + String.valueOf(resultados.split("----------").length - 1) + " resultados:\n" + resultados);
@@ -505,7 +505,7 @@ public class InterfazJOption {
 
     }
 
-    public void getAllFilial() {
+    public void getAllFilial2() {
         /*   Este método se usa el método de la clase GestorQuickPass para traer el total de accesos 
         agrupados por filial.
         
@@ -513,7 +513,7 @@ public class InterfazJOption {
         Retorno: void */
 
         // Llamamos al método que obtiene los accesos por filial
-        String[] resultados = gestorQuickpass.gestorAcceso.getAccesosPorFilial();
+        String[] resultados = gestorQuickpass.gestorAcceso.getFilialAccessByFilial(inputFilialMsj);
 
         // Verificamos si hay resultados
         if (resultados != null && !resultados[0].equals("0")) {
