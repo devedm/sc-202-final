@@ -315,6 +315,42 @@ public class GestorAccesso {
 
     }
     
+    public String[] getFilialAccessByFilial(String filial) {
+        String[][] registros = readFile(); // Obtener registros del archivo
+        int index = 0;
+        String[] tempArray = new String[registros.length];
+        int index2 = 0;
+
+        if (registros == null || registros.length == 0) {
+            System.out.println("No hay registros para mostrar.");
+            return null;
+        } else {
+            // Recorremos el arreglo bidimensional para buscar coincidencias
+            for (int i = 0; i < registros.length; i++) {
+                if (registros[i][3].contains("Filial: " + filial) && (registros[i][1].trim().contentEquals("Entrada") || registros[i][1].trim().contentEquals("Salida"))) {
+                    tempArray[i] = registros[i][0] + registros[i][1] + registros[i][2] + registros[i][3];
+                    index ++;
+                }
+            }
+            String[] resultados = new String[index];
+            
+            for (int i = 0; i < tempArray.length; i++) {
+                if(tempArray[i] != null){
+                    resultados[index2] = tempArray[i];
+                    index2 ++;
+                }
+            }
+            
+            // Comprobar si se encontraron registros
+            if (tempArray.length > 0) {
+                return resultados;
+            } else {
+                return resultados;
+            }
+        }
+
+    }
+    
     public String[] getFechasQuickpass(String inicio, String fin){
         String[][] biDimArr = readFile();
         String[] arrayResultado = new String[2];
@@ -353,4 +389,39 @@ public class GestorAccesso {
         return arrayResultado;
     }
     
+    public String[] getAllAccess() {
+        String[][] registros = readFile(); // Obtener registros del archivo
+        int index = 0;
+        String[] tempArray = new String[registros.length];
+        int index2 = 0;
+
+        if (registros == null || registros.length == 0) {
+            System.out.println("No hay registros para mostrar.");
+            return null;
+        } else {
+            // Recorremos el arreglo bidimensional para buscar coincidencias
+            for (int i = 0; i < registros.length; i++) {
+                if ((registros[i][1].trim().contentEquals("Entrada") || registros[i][1].trim().contentEquals("Salida"))) {
+                    tempArray[i] = registros[i][0] + registros[i][1] + registros[i][2] + registros[i][3];
+                    index ++;
+                }
+            }
+            String[] resultados = new String[index];
+            
+            for (int i = 0; i < tempArray.length; i++) {
+                if(tempArray[i] != null){
+                    resultados[index2] = tempArray[i];
+                    index2 ++;
+                }
+            }
+            
+            // Comprobar si se encontraron registros
+            if (tempArray.length > 0) {
+                return resultados;
+            } else {
+                return resultados;
+            }
+        }
+
+    }
 }

@@ -7,6 +7,8 @@ package projecto_final;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Comparator;
 import javax.swing.JOptionPane;
 
 /**
@@ -428,11 +430,69 @@ public class InterfazJOption {
     }
     
     public void getAllAccesos(){
-
+        // Variables
+        String[] resultados = gestorQuickpass.gestorAcceso.getAllAccess();
+        if(resultados != null){
+            JOptionPane.showMessageDialog(null, "Total de accesos: " + String.valueOf(resultados.length)+ "\n" + printStringArrayWithLineBreak(resultados));
+        }
     }
     
     public void getAllFilial(){
+        // Variables
+        String[] filiales = new String[10];
+        int filialIndex = 0;
+        String resultados = "";
         
+        
+        // Crear lista de fililaes con repetidas
+        for (Quickpass quickpass : gestorQuickpass.quickpassEnServicio) {
+            if( quickpass != null){
+                filiales[filialIndex] = quickpass.getFilial();
+                filialIndex ++;
+            }
+        }
+        System.out.println("Antes de Sort:\n" + Arrays.toString(filiales));
+        // se ordena el array para organizar los items iguales juntos
+        Arrays.sort(filiales, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
+        System.out.println("Despues de Sort:\n" + Arrays.toString(filiales));
+        // Filtrar fililales repetidas
+        for (int i = 0; i < filiales.length; i++) {
+            if(filiales[i] != null && i > 0) {
+                if(filiales[i] == filiales[i-1]){
+                    filiales[i-1] = null; 
+                    filialIndex --;
+                }
+            }
+        } 
+        
+        // se crea un nuevo array con cada Filial que existe sin repetir
+        String[] filialesFiltradas = new String[filialIndex];
+        
+        for (int i = 0; i < filialesFiltradas.length; i++) {
+            filialesFiltradas[i] = filiales[i];
+        }
+        System.out.println("Filtradas:\n" + Arrays.toString(filialesFiltradas));
+        // Se buscan los resgistros de los accessos y guardan en el string de resultado
+        for (String filial : filialesFiltradas) {
+            String[] accessosFilial = gestorQuickpass.gestorAcceso.getFilialAccessByFilial(filial);
+            resultados = resultados + "-----------\nFilial:" + filial + "Accessos: " + String.valueOf(accessosFilial.length) + "\n" + printStringArrayWithLineBreak(accessosFilial) + "\n";
+        }
+        System.out.println("Resultados:\n" + String.valueOf(resultados.length()));
+        
+        if(filialesFiltradas.length > 0){
+            JOptionPane.showMessageDialog(null, resultados);
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay accessos registrados", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+    
+    public String printStringArrayWithLineBreak(String[] array){
+        String result = "";
+        for (String string : array) {
+            result = result + string + "\n";
+        }
+        return result;
     }
     
     public void getAllCreatedQuickPass(){
